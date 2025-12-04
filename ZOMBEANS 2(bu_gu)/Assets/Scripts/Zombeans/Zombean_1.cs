@@ -8,6 +8,8 @@ using UnityEngine.Rendering;
 public class Zombean_1 : MonoBehaviour
 {
     public bool is_explosive;
+    public float explosion_force, explosion_radius;
+    public GameObject explosion;
 
     public int Health;
     private int Current_Health;
@@ -122,7 +124,9 @@ public class Zombean_1 : MonoBehaviour
         {
             if (is_explosive) 
             {
-            
+                
+                explosion_knockback();
+                Destroy(gameObject);
             }
             else 
             {
@@ -159,6 +163,43 @@ public class Zombean_1 : MonoBehaviour
             Spine1.AddForce(oppositedirection2 * 5, ForceMode.Impulse);
         }
 
+    }
+
+    public void plain_death()
+    {
+        nav.speed = 0;
+        dead = true;
+        foreach (ConfigurableJoint joint in joints)
+        {
+            Destroy(joint);
+
+            JointDrive drive = joint.slerpDrive;
+            drive.positionSpring = 0;
+            joint.slerpDrive = drive;
+            //print("dead zombean");
+            B_collider.enabled = false;
+        }
+    }
+
+    public void explosion_knockback()
+    {
+        print("explosion");
+        Instantiate(explosion, transform.position, Quaternion.identity);    
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosion_radius);
+
+        foreach (Collider nearby in colliders)
+        {
+           Rigidbody rb = nearby.GetComponent<Rigidbody>();
+            if(rb != null)
+            {
+                if(rb.tag == "ZOMBEAN")
+                {
+                    rb.TryGetComponent<Zombean_1>(out Zombean_1 zombean);
+                    zombean.plain_death();
+                }
+                rb.AddExplosionForce(explosion_force, transform.position, explosion_radius);
+            }
+        }
     }
 }
 
