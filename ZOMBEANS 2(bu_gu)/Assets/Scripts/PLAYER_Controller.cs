@@ -14,6 +14,9 @@ public class PLAYER : MonoBehaviour{
     public GUNCONTROLLER TheGun;
     private int Health;
 
+    //GFX
+    public GameObject model;
+
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +30,8 @@ public class PLAYER : MonoBehaviour{
     // Update is called once per frame
     void Update()
     {
+        //model.transform.position = new Vector3(transform.position.x, model.transform.position.y, transform.position.z);
+
         MoveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
         MoveVelocity = MoveInput * MoveSpeed;
         
