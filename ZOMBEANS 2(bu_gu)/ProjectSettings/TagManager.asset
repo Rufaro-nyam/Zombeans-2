@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ZOMBEAN
   - STONE
+  - ZOMBEAN2
   layers:
   - Default
   - TransparentFX

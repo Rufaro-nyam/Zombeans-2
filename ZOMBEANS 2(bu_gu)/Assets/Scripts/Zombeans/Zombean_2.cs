@@ -56,13 +56,13 @@ public class Zombean_2 : MonoBehaviour
         if (!dead) 
         {
             float dist = (Vector3.Distance(transform.position, player.transform.position));
-            if (dist < 2f)
+            if (dist < 2.5f)
             {
                 nav.speed = 0;
             }
             else
             {
-                nav.speed = 3.5f;
+                nav.speed = 7f;
             }
             if (can_attack && dist < 2f)
             {
@@ -88,7 +88,7 @@ public class Zombean_2 : MonoBehaviour
 
     private IEnumerator reset_attack()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         can_attack = true;
     }
 

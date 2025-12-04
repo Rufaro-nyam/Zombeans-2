@@ -52,6 +52,11 @@ public class GUNCONTROLLER : MonoBehaviour
                             hit.collider.gameObject.GetComponent<Zombean_1>().Damage();
                             Instantiate(blood_spray, hit.point, Quaternion.LookRotation(hit.normal));
                         }
+                        if (hit.collider.tag == "ZOMBEAN2")
+                        {
+                            hit.collider.gameObject.GetComponent<Zombean_2>().Damage();
+                            Instantiate(blood_spray, hit.point, Quaternion.LookRotation(hit.normal));
+                        }
 
                     }
                     if (hit.collider.tag == "STONE")
