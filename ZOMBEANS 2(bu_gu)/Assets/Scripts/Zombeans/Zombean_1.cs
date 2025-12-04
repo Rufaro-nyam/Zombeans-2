@@ -7,6 +7,7 @@ using UnityEngine.Rendering;
 
 public class Zombean_1 : MonoBehaviour
 {
+    public bool is_explosive;
 
     public int Health;
     private int Current_Health;
@@ -119,28 +120,36 @@ public class Zombean_1 : MonoBehaviour
 
         if (Current_Health <= 0 && dead == false)
         {
-            //Destroy(joint);
-            //Anim.Play("Zombean_1_death");
-            nav.speed = 0;
-            dead = true;
-            foreach (ConfigurableJoint joint in joints) 
+            if (is_explosive) 
             {
-                Destroy(joint);
-                
-                JointDrive drive = joint.slerpDrive;
-                drive.positionSpring = 0;
-                joint.slerpDrive = drive;
-                //print("dead zombean");
-                B_collider.enabled = false;
-            }
-            Vector3 directiontoplayer = player.transform.position - transform.position;
-            Vector3 oppositedirection = -directiontoplayer.normalized;
-            Head.AddForce(oppositedirection * 30, ForceMode.Impulse);
-            Spine1.AddForce(oppositedirection * 30, ForceMode.Impulse);
-            Spine2.AddForce(oppositedirection * 30, ForceMode.Impulse);
-
             
-            // Destroy(gameObject);
+            }
+            else 
+            {
+                //Destroy(joint);
+                //Anim.Play("Zombean_1_death");
+                nav.speed = 0;
+                dead = true;
+                foreach (ConfigurableJoint joint in joints)
+                {
+                    Destroy(joint);
+
+                    JointDrive drive = joint.slerpDrive;
+                    drive.positionSpring = 0;
+                    joint.slerpDrive = drive;
+                    //print("dead zombean");
+                    B_collider.enabled = false;
+                }
+                Vector3 directiontoplayer = player.transform.position - transform.position;
+                Vector3 oppositedirection = -directiontoplayer.normalized;
+                Head.AddForce(oppositedirection * 30, ForceMode.Impulse);
+                Spine1.AddForce(oppositedirection * 30, ForceMode.Impulse);
+                Spine2.AddForce(oppositedirection * 30, ForceMode.Impulse);
+
+
+                // Destroy(gameObject);
+            }
+
         }
         else
         {
