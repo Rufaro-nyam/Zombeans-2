@@ -129,6 +129,7 @@ public class Zombean_1 : MonoBehaviour
                 
                 explosion_knockback();
                 Destroy(gameObject);
+                dead = true;
             }
             else 
             {
