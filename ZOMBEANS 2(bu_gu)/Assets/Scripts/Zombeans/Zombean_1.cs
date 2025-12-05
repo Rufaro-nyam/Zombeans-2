@@ -10,6 +10,8 @@ public class Zombean_1 : MonoBehaviour
     public bool is_explosive;
     public float explosion_force, explosion_radius;
     public GameObject explosion;
+    public GameObject exp_mist;
+
 
     public int Health;
     private int Current_Health;
@@ -184,7 +186,8 @@ public class Zombean_1 : MonoBehaviour
     public void explosion_knockback()
     {
         print("explosion");
-        Instantiate(explosion, transform.position, Quaternion.identity);    
+        Instantiate(explosion, transform.position, Quaternion.identity);
+        Instantiate(exp_mist, transform.position, Quaternion.identity);
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosion_radius);
 
         foreach (Collider nearby in colliders)

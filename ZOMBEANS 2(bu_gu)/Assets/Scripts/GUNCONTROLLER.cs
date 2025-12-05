@@ -19,6 +19,7 @@ public class GUNCONTROLLER : MonoBehaviour
 
     //EFFECTS
     public ParticleSystem blood_spray;
+    public ParticleSystem blood_spray_green;
     public ParticleSystem stone_hit_particles;
     // Start is called before the first frame update
     void Start()
@@ -56,6 +57,11 @@ public class GUNCONTROLLER : MonoBehaviour
                         {
                             hit.collider.gameObject.GetComponent<Zombean_2>().Damage();
                             Instantiate(blood_spray, hit.point, Quaternion.LookRotation(hit.normal));
+                        }
+                        if (hit.collider.tag == "ZOMBEAN3")
+                        {
+                            hit.collider.gameObject.GetComponent<Zombean_1>().Damage();
+                            Instantiate(blood_spray_green, hit.point, Quaternion.LookRotation(hit.normal));
                         }
 
                     }
