@@ -190,18 +190,22 @@ public class Zombean_1 : MonoBehaviour
 
     public void plain_death()
     {
-        nav.speed = 0;
-        dead = true;
-        foreach (ConfigurableJoint joint in joints)
+        if (!dead)
         {
-            Destroy(joint);
+            nav.speed = 0;
+            dead = true;
+            foreach (ConfigurableJoint joint in joints)
+            {
+                Destroy(joint);
 
-            JointDrive drive = joint.slerpDrive;
-            drive.positionSpring = 0;
-            joint.slerpDrive = drive;
-            //print("dead zombean");
-            B_collider.enabled = false;
+                JointDrive drive = joint.slerpDrive;
+                drive.positionSpring = 0;
+                joint.slerpDrive = drive;
+                //print("dead zombean");
+                B_collider.enabled = false;
+            }
         }
+        dead = true;
     }
 
     public void explosion_knockback()

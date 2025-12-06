@@ -88,7 +88,7 @@ public class Zombean_2 : MonoBehaviour
 
     public void plain_death()
     {
-        dead = true;
+        
         if (!dead)
         {
             nav.speed = 0;
@@ -104,6 +104,7 @@ public class Zombean_2 : MonoBehaviour
                 B_collider.enabled = false;
             }
         }
+        dead = true;
 
     }
 
