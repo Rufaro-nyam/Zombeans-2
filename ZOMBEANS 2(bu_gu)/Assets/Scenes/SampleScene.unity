@@ -2788,6 +2788,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5155740354183493159, guid: ef85b7a442c397c40a4d28e848769c2a, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 2060174981}
     - target: {fileID: 8731231052738392760, guid: ef85b7a442c397c40a4d28e848769c2a, type: 3}
       propertyPath: m_Name
       value: ZOMBEAN_3_MAIN (1)
