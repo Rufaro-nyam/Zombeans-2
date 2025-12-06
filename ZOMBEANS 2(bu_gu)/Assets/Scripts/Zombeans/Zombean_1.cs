@@ -32,6 +32,7 @@ public class Zombean_1 : MonoBehaviour
     public ParticleSystem blood_spray;
 
     public GameObject[] splatter;
+    public GameObject explosion_splatter;
     public LayerMask ground_layer;
 
     public GameObject model_body;
@@ -111,9 +112,19 @@ public class Zombean_1 : MonoBehaviour
         RaycastHit hit;
         if(Physics.Raycast(rayorigin, raydirection, out hit, 10f, ground_layer))
         {
-            print(hit.collider.name);
-            int numb = Random.Range(0, 7);
-            Instantiate(splatter[numb], hit.point, hit.transform.rotation);
+            if (!is_explosive)
+            {
+                print(hit.collider.name);
+                int numb = Random.Range(0, 7);
+                Instantiate(splatter[numb], hit.point, hit.transform.rotation);
+            }
+            else
+            {
+                print(hit.collider.name);
+                int numb = Random.Range(0, 6);
+                Instantiate(splatter[numb], hit.point, hit.transform.rotation);
+            }
+
 
         }
 
@@ -130,6 +141,13 @@ public class Zombean_1 : MonoBehaviour
                 explosion_knockback();
                 Destroy(gameObject);
                 dead = true;
+                nav.speed = 0;
+                if (Physics.Raycast(rayorigin, raydirection, out hit, 10f, ground_layer))
+                {
+                    print(hit.collider.name);
+                    Instantiate(explosion_splatter, hit.point, hit.transform.rotation);
+
+                }
             }
             else 
             {
@@ -152,6 +170,8 @@ public class Zombean_1 : MonoBehaviour
                 Head.AddForce(oppositedirection * 30, ForceMode.Impulse);
                 Spine1.AddForce(oppositedirection * 30, ForceMode.Impulse);
                 Spine2.AddForce(oppositedirection * 30, ForceMode.Impulse);
+
+
 
 
                 // Destroy(gameObject);
@@ -199,6 +219,11 @@ public class Zombean_1 : MonoBehaviour
                 if(rb.tag == "ZOMBEAN")
                 {
                     rb.TryGetComponent<Zombean_1>(out Zombean_1 zombean);
+                    zombean.plain_death();
+                }
+                if (rb.tag == "ZOMBEAN2")
+                {
+                    rb.TryGetComponent<Zombean_2>(out Zombean_2 zombean);
                     zombean.plain_death();
                 }
                 rb.AddExplosionForce(explosion_force, transform.position, explosion_radius);

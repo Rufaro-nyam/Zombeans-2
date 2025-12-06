@@ -86,6 +86,27 @@ public class Zombean_2 : MonoBehaviour
             p.Damage(-collision.GetContact(0).normal);
     }
 
+    public void plain_death()
+    {
+        dead = true;
+        if (!dead)
+        {
+            nav.speed = 0;
+            dead = true;
+            foreach (ConfigurableJoint joint in joints)
+            {
+                Destroy(joint);
+
+                JointDrive drive = joint.slerpDrive;
+                drive.positionSpring = 0;
+                joint.slerpDrive = drive;
+                //print("dead zombean");
+                B_collider.enabled = false;
+            }
+        }
+
+    }
+
     private IEnumerator reset_attack()
     {
         yield return new WaitForSeconds(0.5f);

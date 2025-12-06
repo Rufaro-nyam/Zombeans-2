@@ -11139,13 +11139,13 @@ MonoBehaviour:
   blood_mist: {fileID: 4256463947384817497}
   blood_spray: {fileID: 3607460690979101584}
   splatter:
-  - {fileID: 100000, guid: 358b75ea5451cf143ab19029a189097d, type: 3}
-  - {fileID: 100000, guid: cfc7596704bbd7f489156fcd4c05c7e9, type: 3}
-  - {fileID: 100000, guid: 18a11fd6df8ceb449b8785301026d639, type: 3}
-  - {fileID: 100000, guid: 6fe4d785744af2c40a2157f5b209d97f, type: 3}
-  - {fileID: 100000, guid: aec54d7a991d7b644b145d550a4b7831, type: 3}
-  - {fileID: 100000, guid: 14987c031123b98408a165a8bf1288d4, type: 3}
-  - {fileID: 100000, guid: 43dd1ba2a5dde844eb01240da13ab96b, type: 3}
+  - {fileID: 5826769550237389537, guid: ab6e9759a99278342b58d997b74401c9, type: 3}
+  - {fileID: 2907372286601669921, guid: 65dde737fd5992e45ae0749134ae1758, type: 3}
+  - {fileID: 2692906468148781624, guid: b61f6b39e9a5c5c44bfd6f27fbd628d0, type: 3}
+  - {fileID: 3637203576479617454, guid: 5484cfa79a75fa84480e872940d83063, type: 3}
+  - {fileID: 8600514707213066153, guid: 4e2fac59c54599b4fa5d31f65b93a2cd, type: 3}
+  - {fileID: 8343920217406282759, guid: 6fcade61766205d48a16b2ba1336a334, type: 3}
+  explosion_splatter: {fileID: 8121697295227724361, guid: e542030189a09cb419903513466e6c2e, type: 3}
   ground_layer:
     serializedVersion: 2
     m_Bits: 8
