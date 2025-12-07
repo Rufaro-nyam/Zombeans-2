@@ -12,6 +12,11 @@ public class Zombean_1 : MonoBehaviour
     public GameObject explosion;
     public GameObject exp_mist;
 
+    public bool is_large_zombean;
+
+    public float regular_speed;
+    public float large_zomb_speed;
+
 
     public int Health;
     private int Current_Health;
@@ -165,11 +170,15 @@ public class Zombean_1 : MonoBehaviour
                     //print("dead zombean");
                     B_collider.enabled = false;
                 }
-                Vector3 directiontoplayer = player.transform.position - transform.position;
-                Vector3 oppositedirection = -directiontoplayer.normalized;
-                Head.AddForce(oppositedirection * 30, ForceMode.Impulse);
-                Spine1.AddForce(oppositedirection * 30, ForceMode.Impulse);
-                Spine2.AddForce(oppositedirection * 30, ForceMode.Impulse);
+                if (!is_large_zombean) 
+                {
+                    Vector3 directiontoplayer = player.transform.position - transform.position;
+                    Vector3 oppositedirection = -directiontoplayer.normalized;
+                    Head.AddForce(oppositedirection * 30, ForceMode.Impulse);
+                    Spine1.AddForce(oppositedirection * 30, ForceMode.Impulse);
+                    Spine2.AddForce(oppositedirection * 30, ForceMode.Impulse);
+                }
+
 
 
 
