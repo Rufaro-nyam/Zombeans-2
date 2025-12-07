@@ -13,6 +13,10 @@ public class Zombean_1 : MonoBehaviour
     public GameObject exp_mist;
 
     public bool is_large_zombean;
+    public LARGE_ZOMBEAN_NAVIGATION large_zomb_nav;
+    private bool is_carging = false;
+    public GameObject charge_target;
+    public LayerMask wall_layer;
 
     public float regular_speed;
     public float large_zomb_speed;
@@ -53,6 +57,7 @@ public class Zombean_1 : MonoBehaviour
         UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
         B_collider = GetComponent<BoxCollider>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        charge_target.transform.position = player.transform.position;
 
 
     }
@@ -60,11 +65,34 @@ public class Zombean_1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (is_large_zombean)
+        {
+            transform.rotation = new Quaternion(0,0,0,0);
+            if (is_carging) 
+            {
+                /*RaycastHit hit;
+                Vector3 direction = (charge_target.transform.position - transform.position).normalized;
+                Ray ray = new Ray(transform.position, direction);
+                if (Physics.Raycast(ray, out hit, 1f, wall_layer))
+                {
+                    print("hit wall raycast");
+                }
+                if (Input.GetKeyDown(KeyCode.E))
+                {
+                    charge_target.transform.position = player.transform.position;
+                }
+                Debug.DrawRay(transform.position, direction * 10f, Color.yellow);*/
+            }
+
+        }
+        {
+            
+        }
         if (!dead)
         {
             model_body.transform.position = new Vector3(transform.position.x, model_body.transform.position.y, transform.position.z);
         }
-        if (!dead) 
+        if (!dead && !is_large_zombean) 
         {
             float dist = (Vector3.Distance(transform.position, player.transform.position));
             if (dist < 2f)
@@ -95,8 +123,58 @@ public class Zombean_1 : MonoBehaviour
         PLAYER p = collision.transform.GetComponent<PLAYER>();
         if (p)
             p.Damage(-collision.GetContact(0).normal);
+        if (collision.transform.tag == "STONE")
+        {
+            print("stunned");
+        }
+    
+
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (is_large_zombean)
+        {
+            if (other.transform.name == "WALL")
+            {
+                print("stunned");
+                StartCoroutine(stunned());
+
+            }
+            RGBD_ZMBNLRG_REACTION rgbd = other.transform.GetComponent<RGBD_ZMBNLRG_REACTION>();
+            if (rgbd)
+            {
+                Vector3 knockbac_dir = charge_target.transform.position - transform.position;
+                rgbd.throwback(knockbac_dir);
+            }
+            Zombean_1 zm1 = other.transform.GetComponent<Zombean_1>();
+            if (zm1)
+            {
+                Vector3 knockbac_dir = charge_target.transform.position - transform.position;
+                zm1.charge_death(knockbac_dir);
+            }
+            /*Rigidbody r = other.transform.GetComponent<Rigidbody>();
+            if (r && r.transform.tag != "ZOMBEAN")
+            {
+                Vector3 knockbac_dir = charge_target.transform.position - transform.position;
+                r.AddForce(knockbac_dir * 30, ForceMode.Impulse);
+
+            }*/
+        }
+
+
+    }
+
+    public void charge_death(Vector3 direction)
+    {
+        if (!is_large_zombean)
+        {
+            plain_death();
+            Head.AddForce(direction * 1, ForceMode.Impulse);
+            Spine1.AddForce(direction * 1, ForceMode.Impulse);
+        }
+
+    }
     private IEnumerator reset_attack()
     {
         yield return new WaitForSeconds(1);
@@ -194,6 +272,23 @@ public class Zombean_1 : MonoBehaviour
             Head.AddForce(oppositedirection2 * 5, ForceMode.Impulse);
             Spine1.AddForce(oppositedirection2 * 5, ForceMode.Impulse);
         }
+
+    }
+
+    public IEnumerator stunned()
+    {
+        if (is_large_zombean) 
+        {
+            print("stopped");
+            is_carging = false;
+            nav.speed = 0;
+            yield return new WaitForSeconds(3);
+            charge_target.transform.position = player.transform.position;
+            is_carging = true;
+            nav.speed = 30;
+            print("started");
+        }
+
 
     }
 
