@@ -55,6 +55,12 @@ public class PLAYER : MonoBehaviour{
 
     }
 
+    public void large_knockback(Vector3 direction)
+    {
+        MyRigidbody.AddForce(direction * 10, ForceMode.VelocityChange);
+        print("hit by large");
+    }
+
     private void FixedUpdate()
     {
         MyRigidbody.linearVelocity = MoveVelocity;

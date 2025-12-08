@@ -141,6 +141,13 @@ public class Zombean_1 : MonoBehaviour
                 StartCoroutine(stunned());
 
             }
+            PLAYER p = other.transform.GetComponent<PLAYER>(); 
+            if (p)
+            {
+                
+                Vector3 knockbac_dir = charge_target.transform.position - transform.position;
+                p.large_knockback(knockbac_dir);
+            }
             RGBD_ZMBNLRG_REACTION rgbd = other.transform.GetComponent<RGBD_ZMBNLRG_REACTION>();
             if (rgbd)
             {
@@ -277,16 +284,18 @@ public class Zombean_1 : MonoBehaviour
 
     public IEnumerator stunned()
     {
-        if (is_large_zombean) 
+        if (is_large_zombean && dead == false) 
         {
-            print("stopped");
+            //print("stopped");
             is_carging = false;
             nav.speed = 0;
             yield return new WaitForSeconds(3);
             charge_target.transform.position = player.transform.position;
             is_carging = true;
             nav.speed = 30;
-            print("started");
+            //print("started");
+            yield return new WaitForSeconds(0.5f);
+            charge_target.transform.position = player.transform.position;
         }
 
 
