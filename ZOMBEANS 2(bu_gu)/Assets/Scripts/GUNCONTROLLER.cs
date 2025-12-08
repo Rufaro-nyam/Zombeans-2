@@ -68,7 +68,9 @@ public class GUNCONTROLLER : MonoBehaviour
                     if (hit.collider.tag == "STONE")
                     {
                         print("stone_hit");
-                        Instantiate(stone_hit_particles, hit.point, Quaternion.LookRotation(hit.normal));
+                        //Instantiate(stone_hit_particles, hit.point, Quaternion.LookRotation(hit.normal));
+                        ParticleSystem spawned_particles = Instantiate(stone_hit_particles, hit.point, Quaternion.LookRotation(hit.normal));
+                        spawned_particles.transform.SetParent(hit.collider.transform);
                     }
                 }
                 

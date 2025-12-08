@@ -18,6 +18,13 @@ public class Zombean_1 : MonoBehaviour
     public GameObject charge_target;
     public LayerMask wall_layer;
 
+    public bool is_spitter;
+    public Transform spitpos;
+    public GameObject acid_spit;
+    private bool can_spit = true;
+    public ParticleSystem[] spit;
+
+
     public float regular_speed;
     public float large_zomb_speed;
 
@@ -65,7 +72,7 @@ public class Zombean_1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (is_large_zombean)
+        if (is_large_zombean && !dead)
         {
             transform.rotation = new Quaternion(0,0,0,0);
             if (is_carging) 
@@ -85,6 +92,24 @@ public class Zombean_1 : MonoBehaviour
             }
 
         }
+        if(!dead && is_spitter)
+        {
+            float dist = (Vector3.Distance(transform.position, player.transform.position));
+            if (dist < 4f)
+            {
+                nav.speed = 0;
+                if (can_spit)
+                {
+                    StartCoroutine(spit_attack());
+                    can_spit = false;
+                }
+            }
+            else
+            {
+                nav.speed = 3.5f;
+            }
+        }
+
         {
             
         }
@@ -92,7 +117,7 @@ public class Zombean_1 : MonoBehaviour
         {
             model_body.transform.position = new Vector3(transform.position.x, model_body.transform.position.y, transform.position.z);
         }
-        if (!dead && !is_large_zombean) 
+        if (!dead && !is_large_zombean && !is_spitter) 
         {
             float dist = (Vector3.Distance(transform.position, player.transform.position));
             if (dist < 2f)
@@ -186,6 +211,30 @@ public class Zombean_1 : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         can_attack = true;
+    }
+
+    private IEnumerator spit_attack()
+    {
+        float time = 1f;
+        while(time > 0)
+        {
+            time += Time.deltaTime;
+            nav.speed = 0;
+            foreach (ParticleSystem p in spit) 
+            {
+                p.Play();
+                yield return null;
+            }
+            
+        }
+        foreach (ParticleSystem p in spit)
+        {
+            p.Stop();
+            yield return null;
+        }
+        nav.speed = 3.5f;
+        can_spit = true;
+
     }
 
     public void Damage()
