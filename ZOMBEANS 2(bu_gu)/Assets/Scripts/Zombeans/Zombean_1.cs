@@ -48,6 +48,7 @@ public class Zombean_1 : MonoBehaviour
     public ParticleSystem blood_spray;
 
     public GameObject[] splatter;
+    public GameObject acid;
     public GameObject explosion_splatter;
     public LayerMask ground_layer;
 
@@ -95,17 +96,26 @@ public class Zombean_1 : MonoBehaviour
         if(!dead && is_spitter)
         {
             float dist = (Vector3.Distance(transform.position, player.transform.position));
-            if (dist < 4f)
+            if (dist < 8f)
             {
+
                 nav.speed = 0;
                 if (can_spit)
                 {
+                    Instantiate(acid_spit, spitpos.position, Quaternion.identity);
+                    acid_spit.transform.LookAt(player.transform.position);
+                    Vector3 directiontoplayer2 = player.transform.position - transform.position;
+                    Vector3 oppositedirection2 = directiontoplayer2.normalized;
+                    Head.AddForce(oppositedirection2 * 40, ForceMode.Impulse);
                     StartCoroutine(spit_attack());
                     can_spit = false;
                 }
+                
+                
             }
             else
             {
+                
                 nav.speed = 3.5f;
             }
         }
@@ -215,25 +225,10 @@ public class Zombean_1 : MonoBehaviour
 
     private IEnumerator spit_attack()
     {
-        float time = 1f;
-        while(time > 0)
-        {
-            time += Time.deltaTime;
-            nav.speed = 0;
-            foreach (ParticleSystem p in spit) 
-            {
-                p.Play();
-                yield return null;
-            }
-            
-        }
-        foreach (ParticleSystem p in spit)
-        {
-            p.Stop();
-            yield return null;
-        }
-        nav.speed = 3.5f;
-        can_spit = true;
+
+            yield return new WaitForSeconds(3);
+            can_spit = true;
+
 
     }
 

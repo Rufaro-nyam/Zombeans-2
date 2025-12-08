@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 413200677982965907}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.019, y: 0.083, z: 0.664}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -49,7 +49,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -4731,6 +4731,7 @@ GameObject:
   - component: {fileID: 978806429566361225}
   - component: {fileID: 3769307224787676789}
   - component: {fileID: 6963086865597632407}
+  - component: {fileID: 7430987197469722323}
   m_Layer: 0
   m_Name: BloodPool
   m_TagString: Untagged
@@ -4762,15 +4763,15 @@ ParticleSystem:
   m_GameObject: {fileID: 2149748606146144726}
   serializedVersion: 8
   lengthInSec: 10
-  simulationSpeed: 1
+  simulationSpeed: 3
   stopAction: 0
   cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -9524,6 +9525,27 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!135 &7430987197469722323
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2149748606146144726}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Radius: 0.02
+  m_Center: {x: -0.00000012665987, y: 0, z: 0.000000059604645}
 --- !u!1 &3030165501056118058
 GameObject:
   m_ObjectHideFlags: 0
@@ -9574,7 +9596,7 @@ ParticleSystem:
   emitterVelocityMode: 1
   looping: 0
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   startDelay:
@@ -14231,7 +14253,7 @@ GameObject:
   - component: {fileID: 3189871196206737537}
   - component: {fileID: 3957651436624900389}
   - component: {fileID: 5876498113209752182}
-  - component: {fileID: 8403564251186363590}
+  - component: {fileID: 7310819527493850948}
   m_Layer: 0
   m_Name: Acid_spit
   m_TagString: Untagged
@@ -14247,9 +14269,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7863921311808533950}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.13777503, y: 0.8555228, z: 0.29036003, w: 0.40594324}
+  m_LocalRotation: {x: 0.1531668, y: 0.3555612, z: -0.05918839, w: 0.9201157}
   m_LocalPosition: {x: -1.655, y: 2.743657, z: 2.75}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 7, y: 7, z: 7}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8263816818824478531}
@@ -14271,7 +14293,7 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -14392,7 +14414,7 @@ ParticleSystem:
     startSpeed:
       serializedVersion: 2
       minMaxState: 1
-      scalar: 5
+      scalar: 14
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -18942,7 +18964,7 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
---- !u!114 &8403564251186363590
+--- !u!114 &7310819527493850948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -18954,4 +18976,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a10be312b4c97e44b0d47334fe12360, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  is_mouth: 0
