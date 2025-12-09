@@ -11,9 +11,12 @@ public class PLAYER : MonoBehaviour{
     private Vector3 MoveInput;
     private Vector3 MoveVelocity;
     private Camera MainCamera;
-    public GUNCONTROLLER TheGun;
+
     private int Health;
 
+    //GUNS
+    public GUNCONTROLLER TheGun;
+    public Cheese_grater_gun Gun2;
     //GFX
     public GameObject model;
 
@@ -46,12 +49,8 @@ public class PLAYER : MonoBehaviour{
 
             transform.LookAt( new Vector3( PointToLook.x, transform.position.y, PointToLook.z) );
         }
-        if (Input.GetMouseButtonDown(0))
-            TheGun.is_firing = true;
-        
 
-        if (Input.GetMouseButtonUp(0))
-            TheGun.is_firing = false; 
+            
 
     }
 

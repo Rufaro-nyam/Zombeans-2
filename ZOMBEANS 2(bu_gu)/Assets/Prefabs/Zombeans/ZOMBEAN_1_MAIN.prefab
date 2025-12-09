@@ -293,6 +293,10 @@ MonoBehaviour:
   wall_layer:
     serializedVersion: 2
     m_Bits: 0
+  is_spitter: 0
+  spitpos: {fileID: 0}
+  acid_spit: {fileID: 0}
+  spit: []
   regular_speed: 0
   large_zomb_speed: 0
   Health: 10
@@ -318,6 +322,7 @@ MonoBehaviour:
   - {fileID: 100000, guid: aec54d7a991d7b644b145d550a4b7831, type: 3}
   - {fileID: 100000, guid: 14987c031123b98408a165a8bf1288d4, type: 3}
   - {fileID: 100000, guid: 43dd1ba2a5dde844eb01240da13ab96b, type: 3}
+  acid: {fileID: 0}
   explosion_splatter: {fileID: 0}
   ground_layer:
     serializedVersion: 2
