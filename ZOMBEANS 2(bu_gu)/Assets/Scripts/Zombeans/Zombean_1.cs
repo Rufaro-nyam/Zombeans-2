@@ -56,6 +56,8 @@ public class Zombean_1 : MonoBehaviour
 
     private bool can_attack = true;
 
+    public GameObject flames;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -164,6 +166,11 @@ public class Zombean_1 : MonoBehaviour
         }
     
 
+    }
+
+    public void catch_fire()
+    {
+        flames.SetActive(true);
     }
 
     private void OnTriggerEnter(Collider other)

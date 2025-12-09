@@ -12,6 +12,8 @@ public class GUNCONTROLLER : MonoBehaviour
     public Transform firepoint;
     public bool is_automatic;
     public bool is_shotgun;
+    public bool is_flame_shotgun;
+    
     public int[] shotgun_pellets;
     
     private bool manual_can_shoot = true;
@@ -26,6 +28,7 @@ public class GUNCONTROLLER : MonoBehaviour
     public ParticleSystem blood_spray;
     public ParticleSystem blood_spray_green;
     public ParticleSystem stone_hit_particles;
+    public ParticleSystem shotun_flame;
     // Start is called before the first frame update
     void Start()
     {
@@ -63,22 +66,36 @@ public class GUNCONTROLLER : MonoBehaviour
                         {
                             TrailRenderer trail = Instantiate(bullet_trail, firepoint.position, Quaternion.identity);
                             StartCoroutine(Spawntrail(trail, hit));
+                            /*if (is_flame_shotgun && hit.collider.isTrigger == false)
+                            {
+                                ParticleSystem spawned_particles = Instantiate(shotun_flame, hit.point, Quaternion.LookRotation(hit.normal));
+                                spawned_particles.transform.SetParent(hit.collider.transform);
+                            }*/
                             if (hit.collider.isTrigger)
                             {
                                 if (hit.collider.tag == "ZOMBEAN")
                                 {
                                     hit.collider.gameObject.GetComponent<Zombean_1>().Damage();
                                     Instantiate(blood_spray, hit.point, Quaternion.LookRotation(hit.normal));
+                                    if (is_flame_shotgun)
+                                    {
+                                        hit.collider.gameObject.GetComponent<Zombean_1>().catch_fire();
+                                    }
+
+
+                                    
                                 }
                                 if (hit.collider.tag == "ZOMBEAN2")
                                 {
                                     hit.collider.gameObject.GetComponent<Zombean_2>().Damage();
                                     Instantiate(blood_spray, hit.point, Quaternion.LookRotation(hit.normal));
+
                                 }
                                 if (hit.collider.tag == "ZOMBEAN3")
                                 {
                                     hit.collider.gameObject.GetComponent<Zombean_1>().Damage();
                                     Instantiate(blood_spray_green, hit.point, Quaternion.LookRotation(hit.normal));
+
                                 }
 
                             }
@@ -88,6 +105,11 @@ public class GUNCONTROLLER : MonoBehaviour
                                 //Instantiate(stone_hit_particles, hit.point, Quaternion.LookRotation(hit.normal));
                                 ParticleSystem spawned_particles = Instantiate(stone_hit_particles, hit.point, Quaternion.LookRotation(hit.normal));
                                 spawned_particles.transform.SetParent(hit.collider.transform);
+                                /*if (is_flame_shotgun)
+                                {
+                                    ParticleSystem spawned_particles2 = Instantiate(shotun_flame, hit.point, Quaternion.LookRotation(hit.normal));
+                                    spawned_particles2.transform.SetParent(hit.collider.transform);
+                                }*/
                             }
                         }
                     }
