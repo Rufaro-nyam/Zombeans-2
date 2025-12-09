@@ -10,9 +10,11 @@ public class GUNCONTROLLER : MonoBehaviour
     public float TimeBetweenShots;
     private float ShotCounter;
     public Transform firepoint;
+
     public bool is_automatic;
     public bool is_shotgun;
     public bool is_flame_shotgun;
+    public bool is_grenade_launcher;
     
     public int[] shotgun_pellets;
     
@@ -48,14 +50,23 @@ public class GUNCONTROLLER : MonoBehaviour
         }
         if (is_firing)
         {
-            if (!is_automatic && manual_can_shoot == true) 
+            if (is_grenade_launcher)
             {
                 ShotCounter -= Time.deltaTime;
                 if (ShotCounter <= 0)
                 {
                     ShotCounter = TimeBetweenShots;
-                    /*BULLET1script newBullet = Instantiate(bullet, firepoint.position, firepoint.rotation) as BULLET1script;
-                    newBullet.SPEED = BulletSpeed;*/
+                    BULLET1script newBullet = Instantiate(bullet, firepoint.position, firepoint.rotation) as BULLET1script;
+                    //newBullet.SPEED = BulletSpeed;
+                }
+            }
+            if (!is_automatic && manual_can_shoot == true && is_grenade_launcher == false) 
+            {
+                ShotCounter -= Time.deltaTime;
+                if (ShotCounter <= 0)
+                {
+                    ShotCounter = TimeBetweenShots;
+
 
                     
                     
@@ -119,7 +130,7 @@ public class GUNCONTROLLER : MonoBehaviour
                 manual_can_shoot = false;
             }
 
-            else if (is_automatic)
+            else if (is_automatic && is_grenade_launcher == false)
             {
                 print("auto fire");
                 ShotCounter -= Time.deltaTime;

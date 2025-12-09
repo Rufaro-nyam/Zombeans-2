@@ -7,40 +7,68 @@ public class BULLET1script : MonoBehaviour
     public float SPEED;
     public float LIFETIME;
     public Transform ray_point;
+    private Rigidbody rb;
+    public float explosion_force, explosion_radius;
+    public GameObject explosion;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
+        Vector3 foward_direction = transform.forward * 30;
+        Vector3 upward_direction = transform.up * 5;
+        rb.AddForce(foward_direction, ForceMode.Impulse);
+        rb.AddForce(upward_direction, ForceMode.Impulse);
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.forward * SPEED * Time.deltaTime);
+        /*transform.Translate(Vector3.forward * SPEED * Time.deltaTime);
         LIFETIME -= Time.deltaTime;
         if (LIFETIME < 0 )
-            Destroy(gameObject);
+            Destroy(gameObject);*/
         
     }
 
     private void OnCollisionEnter(Collision other)
     {
-        
-        if (other.gameObject.tag == "ZOMBEAN")
-        {
-            
-        }
+        explosion_knockback();
+        Instantiate(explosion, transform.position, Quaternion.identity);
+        Destroy(gameObject);
+
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "ZOMBEAN")
-        {
-            Debug.Log("collision");
-            other.gameObject.GetComponent<Zombean_1>().Damage();
-        }
+        explosion_knockback();
+        Instantiate(explosion, transform.position, Quaternion.identity);
         Destroy(gameObject);
+    }
+
+    public void explosion_knockback()
+    {
+        print("explosion");
+        Collider[] colliders = Physics.OverlapSphere(transform.position, explosion_radius);
+
+        foreach (Collider nearby in colliders)
+        {
+            Rigidbody rb = nearby.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                if (rb.tag == "ZOMBEAN")
+                {
+                    rb.TryGetComponent<Zombean_1>(out Zombean_1 zombean);
+                    zombean.plain_death();
+                }
+                if (rb.tag == "ZOMBEAN2")
+                {
+                    rb.TryGetComponent<Zombean_2>(out Zombean_2 zombean);
+                    zombean.plain_death();
+                }
+                rb.AddExplosionForce(explosion_force, transform.position, explosion_radius);
+            }
+        }
     }
 }
