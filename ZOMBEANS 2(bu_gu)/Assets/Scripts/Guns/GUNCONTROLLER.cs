@@ -15,6 +15,10 @@ public class GUNCONTROLLER : MonoBehaviour
     public bool is_shotgun;
     public bool is_flame_shotgun;
     public bool is_grenade_launcher;
+    public bool is_flame_thrower;
+
+    public ParticleSystem[] flames;
+    public GameObject flame_object;
     
     public int[] shotgun_pellets;
     
@@ -43,12 +47,28 @@ public class GUNCONTROLLER : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
             is_firing = true;
+            if (is_flame_thrower) 
+            {
+                foreach(ParticleSystem f in flames)
+                {
+                    f.Play();
+                }
+                
+            }
         }
         if (Input.GetMouseButtonUp(0))
         {
             is_firing= false;
+            if (is_flame_thrower)
+            {
+                foreach (ParticleSystem f in flames)
+                {
+                    f.Stop();
+                }
+
+            }
         }
-        if (is_firing)
+        if (is_firing && is_flame_thrower == false)
         {
             if (is_grenade_launcher)
             {

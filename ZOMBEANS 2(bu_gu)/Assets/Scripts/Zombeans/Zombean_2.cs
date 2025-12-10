@@ -33,6 +33,7 @@ public class Zombean_2 : MonoBehaviour
 
     private bool can_attack = true;
 
+    public GameObject flames;
     // Start is called before the first frame update
     void Start()
     {
@@ -108,6 +109,10 @@ public class Zombean_2 : MonoBehaviour
 
     }
 
+    public void catch_fire()
+    {
+        flames.SetActive(true);
+    }
     private IEnumerator reset_attack()
     {
         yield return new WaitForSeconds(0.5f);
