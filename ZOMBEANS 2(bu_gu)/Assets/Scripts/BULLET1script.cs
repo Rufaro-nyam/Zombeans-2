@@ -33,8 +33,9 @@ public class BULLET1script : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        explosion_knockback();
         Instantiate(explosion, transform.position, Quaternion.identity);
+        explosion_knockback();
+        
         Destroy(gameObject);
 
 
@@ -42,8 +43,9 @@ public class BULLET1script : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        explosion_knockback();
         Instantiate(explosion, transform.position, Quaternion.identity);
+        explosion_knockback();
+        
         Destroy(gameObject);
     }
 

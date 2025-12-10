@@ -63,6 +63,8 @@ public class Zombean_1 : MonoBehaviour
     public bool onfire;
     private float fire_time = 35;
 
+    public ParticleSystem wallblood;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -290,26 +292,26 @@ public class Zombean_1 : MonoBehaviour
 
 
         }
-        if (Physics.Raycast(wall_ray_origin, Wall_ray_direction, out wall_hit, 100f, wall_layer))
+        /*if (Physics.Raycast(wall_ray_origin, Wall_ray_direction, out wall_hit, 100f, wall_layer))
         {
             print("wall detected");
             if (!is_explosive)
             {
                 //print(wall_hit.collider.name);
                 int numb = Random.Range(0, 7);
-                Instantiate(splatter[numb], wall_hit.point, Quaternion.LookRotation(wall_hit.normal));
+                Instantiate(splatter[numb], wall_hit.point, Quaternion.LookRotation(-wall_hit.normal));
                 print("blood spawned on wall");
             }
             else
             {
                //print(wall_hit.collider.name);
                 int numb = Random.Range(0, 6);
-                Instantiate(splatter[numb], wall_hit.point, Quaternion.LookRotation(wall_hit.normal));
+                Instantiate(splatter[numb], wall_hit.point, Quaternion.LookRotation(-wall_hit.normal));
                 
             }
 
 
-        }
+        }*/
 
 
 
