@@ -9,7 +9,7 @@ public class Zombean_2 : MonoBehaviour
 {
 
     public int Health;
-    private int Current_Health;
+    private float Current_Health;
     public Rigidbody Head;
     public Rigidbody Spine1;
     public Rigidbody Spine2;
@@ -34,6 +34,8 @@ public class Zombean_2 : MonoBehaviour
     private bool can_attack = true;
 
     public GameObject flames;
+    public bool onfire;
+    private float fire_time = 35;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +52,10 @@ public class Zombean_2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (onfire)
+        {
+            fire_damage(1 * Time.deltaTime);
+        }
         if (!dead)
         {
             model_body.transform.position = new Vector3(transform.position.x, model_body.transform.position.y, transform.position.z);
@@ -112,6 +118,8 @@ public class Zombean_2 : MonoBehaviour
     public void catch_fire()
     {
         flames.SetActive(true);
+        onfire = true;
+        fire_damage(0.01f);
     }
     private IEnumerator reset_attack()
     {
@@ -119,6 +127,69 @@ public class Zombean_2 : MonoBehaviour
         can_attack = true;
     }
 
+    public IEnumerator zombean_on_fire()
+    {
+        yield return new WaitForSeconds(10);
+        flames.SetActive(false);
+
+    }
+    public void fire_damage(float damage)
+    {
+        if (Current_Health > 0)
+        {
+            Current_Health -= damage;
+            print(Current_Health);
+        }
+
+
+
+
+
+        //blood_spray.Play();
+        //spawning_blood
+        Vector3 rayorigin = transform.position;
+        Vector3 raydirection = Vector3.down;
+        RaycastHit hit;
+        if (Physics.Raycast(rayorigin, raydirection, out hit, 10f, ground_layer))
+        {
+
+
+        }
+
+
+
+
+
+
+        if (Current_Health <= 0 && dead == false)
+        {
+            StartCoroutine(zombean_on_fire());
+
+           
+                //Destroy(joint);
+                //Anim.Play("Zombean_1_death");
+                nav.speed = 0;
+                dead = true;
+                foreach (ConfigurableJoint joint in joints)
+                {
+                    Destroy(joint);
+
+                    JointDrive drive = joint.slerpDrive;
+                    drive.positionSpring = 0;
+                    joint.slerpDrive = drive;
+                    //print("dead zombean");
+                    B_collider.enabled = false;
+                }
+
+                // Destroy(gameObject);
+
+
+        }
+        else
+        {
+
+        }
+    }
     public void Damage()
     {
         Current_Health -= 1;

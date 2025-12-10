@@ -68,7 +68,7 @@ public class GUNCONTROLLER : MonoBehaviour
 
             }
         }
-        if (is_firing && is_flame_thrower == false)
+        if (is_firing )
         {
             if (is_grenade_launcher)
             {
@@ -152,7 +152,7 @@ public class GUNCONTROLLER : MonoBehaviour
 
             else if (is_automatic && is_grenade_launcher == false)
             {
-                print("auto fire");
+                
                 ShotCounter -= Time.deltaTime;
                 if (ShotCounter <= 0)
                 {
@@ -189,7 +189,7 @@ public class GUNCONTROLLER : MonoBehaviour
                             }
                             if (hit.collider.tag == "STONE")
                             {
-                                print("stone_hit");
+                                //print("stone_hit");
                                 //Instantiate(stone_hit_particles, hit.point, Quaternion.LookRotation(hit.normal));
                                 ParticleSystem spawned_particles = Instantiate(stone_hit_particles, hit.point, Quaternion.LookRotation(hit.normal));
                                 spawned_particles.transform.SetParent(hit.collider.transform);
