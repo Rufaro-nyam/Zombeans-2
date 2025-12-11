@@ -35,6 +35,10 @@ public class GUNCONTROLLER : MonoBehaviour
     public ParticleSystem blood_spray_green;
     public ParticleSystem stone_hit_particles;
     public ParticleSystem shotun_flame;
+
+    //CAMSHAKE
+    public Camshake Camera_shake;
+    public Player_cam player_Cam;
     // Start is called before the first frame update
     void Start()
     {
@@ -88,8 +92,8 @@ public class GUNCONTROLLER : MonoBehaviour
                     ShotCounter = TimeBetweenShots;
 
 
-                    
-                    
+                    Vector3 p_pos = player_Cam.proper_pos;
+                    Camera_shake.shake(0.2f, p_pos);
                     foreach(int p in shotgun_pellets) 
                     {
                         Vector3 direction = Get_direction();
@@ -164,6 +168,8 @@ public class GUNCONTROLLER : MonoBehaviour
                 ShotCounter -= Time.deltaTime;
                 if (ShotCounter <= 0)
                 {
+                    Vector3 p_pos = player_Cam.proper_pos;
+                    Camera_shake.shake(0.2f, p_pos);
                     ShotCounter = TimeBetweenShots;
                     /*BULLET1script newBullet = Instantiate(bullet, firepoint.position, firepoint.rotation) as BULLET1script;
                     newBullet.SPEED = BulletSpeed;*/
