@@ -473,12 +473,20 @@ public class Zombean_1 : MonoBehaviour
             is_carging = false;
             nav.speed = 0;
             yield return new WaitForSeconds(3);
-            charge_target.transform.position = player.transform.position;
-            is_carging = true;
-            nav.speed = 30;
-            //print("started");
-            yield return new WaitForSeconds(0.5f);
-            charge_target.transform.position = player.transform.position;
+            if(!dead) 
+            {
+                charge_target.transform.position = player.transform.position;
+                is_carging = true;
+                nav.speed = 30;
+                //print("started");
+                yield return new WaitForSeconds(0.5f);
+                charge_target.transform.position = player.transform.position;
+            }
+
+        }
+        else
+        {
+            yield return null;
         }
 
 
@@ -502,6 +510,10 @@ public class Zombean_1 : MonoBehaviour
             }
         }
         dead = true;
+        if (is_explosive)
+        {
+            Damage();
+        }
     }
 
     public void explosion_knockback()

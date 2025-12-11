@@ -59,15 +59,21 @@ public class BULLET1script : MonoBehaviour
             Rigidbody rb = nearby.GetComponent<Rigidbody>();
             if (rb != null)
             {
-                if (rb.tag == "ZOMBEAN")
+                if (rb.tag == "ZOMBEAN" || rb.tag == "ZOMBEAN3")
                 {
-                    rb.TryGetComponent<Zombean_1>(out Zombean_1 zombean);
-                    zombean.plain_death();
+                    if(rb.TryGetComponent<Zombean_1>(out Zombean_1 zombean))
+                    {
+                        zombean.plain_death();
+                    }
+                    
                 }
-                if (rb.tag == "ZOMBEAN2")
+                if (rb.tag == "ZOMBEAN2" || rb.tag == "ZOMBEAN3")
                 {
-                    rb.TryGetComponent<Zombean_2>(out Zombean_2 zombean);
-                    zombean.plain_death();
+                    if(rb.TryGetComponent<Zombean_2>(out Zombean_2 zombean))
+                    {
+                        zombean.plain_death();
+                    }
+                    
                 }
                 rb.AddExplosionForce(explosion_force, transform.position, explosion_radius);
             }

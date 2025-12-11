@@ -120,12 +120,20 @@ public class GUNCONTROLLER : MonoBehaviour
                                 {
                                     hit.collider.gameObject.GetComponent<Zombean_2>().Damage();
                                     Instantiate(blood_spray, hit.point, Quaternion.LookRotation(hit.normal));
+                                    if (is_flame_shotgun)
+                                    {
+                                        hit.collider.gameObject.GetComponent<Zombean_2>().catch_fire();
+                                    }
 
                                 }
                                 if (hit.collider.tag == "ZOMBEAN3")
                                 {
                                     hit.collider.gameObject.GetComponent<Zombean_1>().Damage();
                                     Instantiate(blood_spray_green, hit.point, Quaternion.LookRotation(hit.normal));
+                                    if (is_flame_shotgun)
+                                    {
+                                        hit.collider.gameObject.GetComponent<Zombean_1>().catch_fire();
+                                    }
 
                                 }
 
