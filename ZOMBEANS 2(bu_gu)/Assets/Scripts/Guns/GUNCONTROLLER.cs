@@ -17,6 +17,13 @@ public class GUNCONTROLLER : MonoBehaviour
     public bool is_grenade_launcher;
     public bool is_flame_thrower;
 
+    public bool gun1;
+    public bool cheese_grater;
+    public bool machine_gun;
+    public bool shotgun1;
+    public bool flame_shotgun;
+    
+
     public ParticleSystem[] flames;
     public GameObject flame_object;
     
@@ -56,6 +63,8 @@ public class GUNCONTROLLER : MonoBehaviour
                 foreach(ParticleSystem f in flames)
                 {
                     f.Play();
+                    Vector3 p_pos = player_Cam.proper_pos;
+                    Camera_shake.shake(0.2f, p_pos, 4f);
                 }
                 
             }
@@ -91,10 +100,21 @@ public class GUNCONTROLLER : MonoBehaviour
                 {
                     ShotCounter = TimeBetweenShots;
 
+                    //shake region
+                    if (gun1)
+                    {
+                        Vector3 p_pos = player_Cam.proper_pos;
+                        Camera_shake.shake(0.2f, p_pos, 2);
+                    }
+                    if (shotgun1)
+                    {
+                        Vector3 p_pos = player_Cam.proper_pos;
+                        Camera_shake.shake(0.2f, p_pos, 0.25f);
+                    }
 
-                    Vector3 p_pos = player_Cam.proper_pos;
-                    Camera_shake.shake(0.2f, p_pos);
-                    foreach(int p in shotgun_pellets) 
+
+
+                    foreach (int p in shotgun_pellets) 
                     {
                         Vector3 direction = Get_direction();
                         if (Physics.Raycast(firepoint.position, direction, out RaycastHit hit, float.MaxValue))
@@ -115,6 +135,8 @@ public class GUNCONTROLLER : MonoBehaviour
                                     if (is_flame_shotgun)
                                     {
                                         hit.collider.gameObject.GetComponent<Zombean_1>().catch_fire();
+                                        Vector3 p_pos = player_Cam.proper_pos;
+                                        Camera_shake.shake(0.2f, p_pos, 0f);
                                     }
 
 
@@ -127,6 +149,8 @@ public class GUNCONTROLLER : MonoBehaviour
                                     if (is_flame_shotgun)
                                     {
                                         hit.collider.gameObject.GetComponent<Zombean_2>().catch_fire();
+                                        Vector3 p_pos = player_Cam.proper_pos;
+                                        Camera_shake.shake(0.2f, p_pos, 0f);
                                     }
 
                                 }
@@ -137,6 +161,8 @@ public class GUNCONTROLLER : MonoBehaviour
                                     if (is_flame_shotgun)
                                     {
                                         hit.collider.gameObject.GetComponent<Zombean_1>().catch_fire();
+                                        Vector3 p_pos = player_Cam.proper_pos;
+                                        Camera_shake.shake(0.2f, p_pos, 0f);
                                     }
 
                                 }
@@ -168,8 +194,17 @@ public class GUNCONTROLLER : MonoBehaviour
                 ShotCounter -= Time.deltaTime;
                 if (ShotCounter <= 0)
                 {
-                    Vector3 p_pos = player_Cam.proper_pos;
-                    Camera_shake.shake(0.2f, p_pos);
+                    //shake region
+                    if (cheese_grater)
+                    {
+                        Vector3 p_pos = player_Cam.proper_pos;
+                        Camera_shake.shake(0.2f, p_pos, 2);
+                    }
+                    if (machine_gun)
+                    {
+                        Vector3 p_pos = player_Cam.proper_pos;
+                        Camera_shake.shake(0.2f, p_pos, 1f);
+                    }
                     ShotCounter = TimeBetweenShots;
                     /*BULLET1script newBullet = Instantiate(bullet, firepoint.position, firepoint.rotation) as BULLET1script;
                     newBullet.SPEED = BulletSpeed;*/

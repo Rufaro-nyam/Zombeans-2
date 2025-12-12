@@ -12,6 +12,7 @@ public class Cam_track : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z);
+        Vector3 targetpos = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z);
+        transform.position = Vector3.Lerp(transform.position, targetpos, 0.1f);
     }
 }

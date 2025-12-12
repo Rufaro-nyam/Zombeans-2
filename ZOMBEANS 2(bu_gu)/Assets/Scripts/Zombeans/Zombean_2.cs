@@ -206,7 +206,7 @@ public class Zombean_2 : MonoBehaviour
         {
             print(hit.collider.name);
             int numb = Random.Range(0, 7);
-            Instantiate(splatter[numb], hit.point, hit.transform.rotation);
+            Instantiate(splatter[numb], new Vector3(hit.point.x, hit.point.y + 0.01f, hit.point.z), hit.transform.rotation);
 
         }
 
