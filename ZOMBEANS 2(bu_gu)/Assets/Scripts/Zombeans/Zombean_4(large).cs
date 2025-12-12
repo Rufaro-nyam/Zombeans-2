@@ -39,7 +39,7 @@ public class Zombean_4 : MonoBehaviour
         Current_Health = Health;
         Anim = GetComponentInParent<Animator>();
         nav = GetComponent<NavMeshAgent>();
-        UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
+       // UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
         B_collider = GetComponent<BoxCollider>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
 

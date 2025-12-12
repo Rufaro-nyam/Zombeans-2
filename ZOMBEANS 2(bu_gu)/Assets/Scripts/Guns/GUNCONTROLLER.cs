@@ -135,8 +135,7 @@ public class GUNCONTROLLER : MonoBehaviour
                                     if (is_flame_shotgun)
                                     {
                                         hit.collider.gameObject.GetComponent<Zombean_1>().catch_fire();
-                                        Vector3 p_pos = player_Cam.proper_pos;
-                                        Camera_shake.shake(0.2f, p_pos, 0f);
+                                        
                                     }
 
 
@@ -149,8 +148,7 @@ public class GUNCONTROLLER : MonoBehaviour
                                     if (is_flame_shotgun)
                                     {
                                         hit.collider.gameObject.GetComponent<Zombean_2>().catch_fire();
-                                        Vector3 p_pos = player_Cam.proper_pos;
-                                        Camera_shake.shake(0.2f, p_pos, 0f);
+                                        
                                     }
 
                                 }
@@ -161,8 +159,7 @@ public class GUNCONTROLLER : MonoBehaviour
                                     if (is_flame_shotgun)
                                     {
                                         hit.collider.gameObject.GetComponent<Zombean_1>().catch_fire();
-                                        Vector3 p_pos = player_Cam.proper_pos;
-                                        Camera_shake.shake(0.2f, p_pos, 0f);
+                                        
                                     }
 
                                 }

@@ -42,7 +42,7 @@ public class Zombean_2 : MonoBehaviour
         Current_Health = Health;
         Anim = GetComponentInParent<Animator>();
         nav = GetComponent<NavMeshAgent>();
-        UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
+       // UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
         B_collider = GetComponent<BoxCollider>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
 
@@ -138,7 +138,7 @@ public class Zombean_2 : MonoBehaviour
         if (Current_Health > 0)
         {
             Current_Health -= damage;
-            print(Current_Health);
+            //print(Current_Health);
         }
 
 
