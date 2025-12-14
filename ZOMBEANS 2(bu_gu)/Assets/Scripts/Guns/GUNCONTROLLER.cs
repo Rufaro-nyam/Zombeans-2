@@ -46,6 +46,11 @@ public class GUNCONTROLLER : MonoBehaviour
     //CAMSHAKE
     public Camshake Camera_shake;
     public Player_cam player_Cam;
+
+    //MUZZLE FLASHES
+    public ParticleSystem cheese_graater_muzzleflash;
+    public GameObject cheese_flash;
+    public GameObject cheese_glow;
     // Start is called before the first frame update
     void Start()
     {
@@ -72,6 +77,7 @@ public class GUNCONTROLLER : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
             is_firing= false;
+            
             if (is_flame_thrower)
             {
                 foreach (ParticleSystem f in flames)
@@ -80,6 +86,10 @@ public class GUNCONTROLLER : MonoBehaviour
                 }
 
             }
+
+            //FLASH REGION
+            cheese_graater_muzzleflash.Stop();
+            cheese_glow.SetActive(false);
         }
         if (is_firing )
         {
@@ -196,6 +206,9 @@ public class GUNCONTROLLER : MonoBehaviour
                     {
                         Vector3 p_pos = player_Cam.proper_pos;
                         Camera_shake.shake(0.2f, p_pos, 2);
+                        cheese_graater_muzzleflash.Play();
+                        cheese_flash.transform.rotation = Random.rotation;
+                        cheese_glow.SetActive(true);
                     }
                     if (machine_gun)
                     {

@@ -281,13 +281,13 @@ public class Zombean_1 : MonoBehaviour
             {
                 //print(hit.collider.name);
                 int numb = Random.Range(0, 7);
-                Instantiate(splatter[numb], hit.point, Quaternion.LookRotation(hit.normal));
+                Instantiate(splatter[numb], new Vector3(hit.point.x, hit.point.y + 0.01f, hit.point.z), hit.transform.rotation);
             }
             else
             {
                 //print(hit.collider.name);
                 int numb = Random.Range(0, 6);
-                Instantiate(splatter[numb], hit.point, Quaternion.LookRotation(hit.normal));
+                Instantiate(splatter[numb], new Vector3(hit.point.x, hit.point.y + 0.01f, hit.point.z), hit.transform.rotation);
             }
 
 
