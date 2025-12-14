@@ -51,6 +51,10 @@ public class GUNCONTROLLER : MonoBehaviour
     public ParticleSystem cheese_graater_muzzleflash;
     public GameObject cheese_flash;
     public GameObject cheese_glow;
+
+    public ParticleSystem machine_gun_muzzleflash;
+    public GameObject m_g_flash;
+    public GameObject m_g_glow;
     // Start is called before the first frame update
     void Start()
     {
@@ -88,8 +92,17 @@ public class GUNCONTROLLER : MonoBehaviour
             }
 
             //FLASH REGION
-            cheese_graater_muzzleflash.Stop();
-            cheese_glow.SetActive(false);
+            if (cheese_grater)
+            {
+                cheese_graater_muzzleflash.Stop();
+                cheese_glow.SetActive(false);
+            }
+            if (machine_gun)
+            {
+                machine_gun_muzzleflash.Stop();
+                m_g_glow.SetActive(false);
+            }
+
         }
         if (is_firing )
         {
@@ -214,6 +227,9 @@ public class GUNCONTROLLER : MonoBehaviour
                     {
                         Vector3 p_pos = player_Cam.proper_pos;
                         Camera_shake.shake(0.2f, p_pos, 1f);
+                        machine_gun_muzzleflash.Play();
+                        m_g_flash.transform.rotation = Random.rotation;
+                        m_g_glow.SetActive(true);
                     }
                     ShotCounter = TimeBetweenShots;
                     /*BULLET1script newBullet = Instantiate(bullet, firepoint.position, firepoint.rotation) as BULLET1script;
