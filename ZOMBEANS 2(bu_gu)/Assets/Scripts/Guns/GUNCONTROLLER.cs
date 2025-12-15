@@ -55,6 +55,12 @@ public class GUNCONTROLLER : MonoBehaviour
     public ParticleSystem machine_gun_muzzleflash;
     public GameObject m_g_flash;
     public GameObject m_g_glow;
+
+    public ParticleSystem flame_shotgun_flash;
+
+    public ParticleSystem shotgun_muzzle_flash;
+    public GameObject shotgun_flash;
+    public GameObject shotgun_glow;
     // Start is called before the first frame update
     void Start()
     {
@@ -102,6 +108,12 @@ public class GUNCONTROLLER : MonoBehaviour
                 machine_gun_muzzleflash.Stop();
                 m_g_glow.SetActive(false);
             }
+            if (shotgun1 && is_flame_shotgun == false)
+            {
+                shotgun_muzzle_flash.Stop();
+                //shotgun_flash.transform.rotation = Random.rotation;
+                shotgun_glow.SetActive(false);
+            }
 
         }
         if (is_firing )
@@ -133,6 +145,16 @@ public class GUNCONTROLLER : MonoBehaviour
                     {
                         Vector3 p_pos = player_Cam.proper_pos;
                         Camera_shake.shake(0.2f, p_pos, 0.25f);
+                        if (is_flame_shotgun) 
+                        {
+                            flame_shotgun_flash.Play();
+                        }
+                        else
+                        {
+                            shotgun_muzzle_flash.Play();
+                            shotgun_flash.transform.rotation = Random.rotation;
+                            shotgun_glow.SetActive(true);
+                        }
                     }
 
 
