@@ -18,8 +18,8 @@ public class Camshake : MonoBehaviour
     void Update()
     {
 
-        Vector3 targetpos = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z);
-        transform.position = Vector3.Lerp(transform.position, targetpos, 0.1f);
+        //Vector3 targetpos = new Vector3(target.transform.position.x, transform.position.y, target.transform.position.z);
+        //transform.position = Vector3.Lerp(transform.position, targetpos, 0.1f);
     }
 
     public void shake(float duration, Vector3 proper_pos, float shake_division)

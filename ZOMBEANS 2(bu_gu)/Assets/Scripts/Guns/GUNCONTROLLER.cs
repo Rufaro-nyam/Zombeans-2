@@ -48,6 +48,10 @@ public class GUNCONTROLLER : MonoBehaviour
     public Player_cam player_Cam;
 
     //MUZZLE FLASHES
+    public ParticleSystem gun1_muzzleflash;
+    public GameObject gun1_flash;
+    public GameObject gun1_glow;
+
     public ParticleSystem cheese_graater_muzzleflash;
     public GameObject cheese_flash;
     public GameObject cheese_glow;
@@ -114,6 +118,11 @@ public class GUNCONTROLLER : MonoBehaviour
                 //shotgun_flash.transform.rotation = Random.rotation;
                 shotgun_glow.SetActive(false);
             }
+            if (gun1)
+            {
+                gun1_muzzleflash.Stop();
+                gun1_glow.SetActive(false);
+            }
 
         }
         if (is_firing )
@@ -130,6 +139,7 @@ public class GUNCONTROLLER : MonoBehaviour
             }
             if (!is_automatic && manual_can_shoot == true && is_grenade_launcher == false) 
             {
+
                 ShotCounter -= Time.deltaTime;
                 if (ShotCounter <= 0)
                 {
@@ -140,6 +150,9 @@ public class GUNCONTROLLER : MonoBehaviour
                     {
                         Vector3 p_pos = player_Cam.proper_pos;
                         Camera_shake.shake(0.2f, p_pos, 2);
+                        gun1_muzzleflash.Play();
+                        gun1_flash.transform.rotation = Random.rotation;
+                        gun1_glow.SetActive(true);
                     }
                     if (shotgun1)
                     {
@@ -154,6 +167,7 @@ public class GUNCONTROLLER : MonoBehaviour
                             shotgun_muzzle_flash.Play();
                             shotgun_flash.transform.rotation = Random.rotation;
                             shotgun_glow.SetActive(true);
+
                         }
                     }
 
