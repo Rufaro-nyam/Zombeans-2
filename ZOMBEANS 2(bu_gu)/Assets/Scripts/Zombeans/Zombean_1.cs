@@ -292,6 +292,8 @@ public class Zombean_1 : MonoBehaviour
 
 
         }
+
+
         /*if (Physics.Raycast(wall_ray_origin, Wall_ray_direction, out wall_hit, 100f, wall_layer))
         {
             print("wall detected");
@@ -357,6 +359,96 @@ public class Zombean_1 : MonoBehaviour
                     Head.AddForce(oppositedirection * 30, ForceMode.Impulse);
                     Spine1.AddForce(oppositedirection * 30, ForceMode.Impulse);
                     Spine2.AddForce(oppositedirection * 30, ForceMode.Impulse);
+                }
+
+
+
+
+
+                // Destroy(gameObject);
+            }
+
+        }
+        else
+        {
+            Vector3 directiontoplayer2 = player.transform.position - transform.position;
+            Vector3 oppositedirection2 = -directiontoplayer2.normalized;
+            Head.AddForce(oppositedirection2 * 5, ForceMode.Impulse);
+            Spine1.AddForce(oppositedirection2 * 5, ForceMode.Impulse);
+        }
+
+    }
+
+    public void Sniper_Damage(Transform bullet_origin)
+    {
+        Current_Health -= 15;
+        blood_mist.Play();
+
+
+
+        //blood_spray.Play();
+        //spawning_blood
+        Vector3 rayorigin = transform.position;
+        Vector3 raydirection = Vector3.down;
+        Vector3 wall_ray_origin = new Vector3(transform.position.x, transform.position.y + 1, transform.position.z);
+        Vector3 Wall_ray_direction = transform.position - player.transform.position;
+        RaycastHit hit;
+        if (Physics.Raycast(rayorigin, raydirection, out hit, 10f, ground_layer))
+        {
+            if (!is_explosive)
+            {
+                //print(hit.collider.name);
+                int numb = Random.Range(0, 7);
+                Instantiate(splatter[numb], new Vector3(hit.point.x, hit.point.y + 0.01f, hit.point.z), hit.transform.rotation);
+            }
+            else
+            {
+                //print(hit.collider.name);
+                int numb = Random.Range(0, 6);
+                Instantiate(splatter[numb], new Vector3(hit.point.x, hit.point.y + 0.01f, hit.point.z), hit.transform.rotation);
+            }
+
+
+        }
+        if (Current_Health <= 0 && dead == false)
+        {
+            if (is_explosive)
+            {
+
+                explosion_knockback();
+                Destroy(gameObject);
+                dead = true;
+                nav.speed = 0;
+                if (Physics.Raycast(rayorigin, raydirection, out hit, 10f, ground_layer))
+                {
+                    print(hit.collider.name);
+                    Instantiate(explosion_splatter, hit.point, hit.transform.rotation);
+
+                }
+            }
+            else
+            {
+                //Destroy(joint);
+                //Anim.Play("Zombean_1_death");
+                nav.speed = 0;
+                dead = true;
+                foreach (ConfigurableJoint joint in joints)
+                {
+                    Destroy(joint);
+
+                    JointDrive drive = joint.slerpDrive;
+                    drive.positionSpring = 0;
+                    joint.slerpDrive = drive;
+                    //print("dead zombean");
+                    B_collider.enabled = false;
+                }
+                if (!is_large_zombean)
+                {
+                    Vector3 directiontoplayer = bullet_origin.position - transform.position;
+                    Vector3 oppositedirection = -directiontoplayer.normalized;
+                    Head.AddForce(oppositedirection * 60, ForceMode.Impulse);
+                    Spine1.AddForce(oppositedirection * 60, ForceMode.Impulse);
+                    Spine2.AddForce(oppositedirection * 60, ForceMode.Impulse);
                 }
 
 
