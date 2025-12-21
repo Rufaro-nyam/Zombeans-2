@@ -9936,7 +9936,7 @@ MonoBehaviour:
   blood_mist: {fileID: 5438728022411596455}
   blood_spray: {fileID: 6491490792282162994}
   splatter:
-  - {fileID: 5826769550237389537, guid: ab6e9759a99278342b58d997b74401c9, type: 3}
+  - {fileID: 2907372286601669921, guid: 65dde737fd5992e45ae0749134ae1758, type: 3}
   - {fileID: 2907372286601669921, guid: 65dde737fd5992e45ae0749134ae1758, type: 3}
   - {fileID: 2692906468148781624, guid: b61f6b39e9a5c5c44bfd6f27fbd628d0, type: 3}
   - {fileID: 3637203576479617454, guid: 5484cfa79a75fa84480e872940d83063, type: 3}
@@ -9949,6 +9949,8 @@ MonoBehaviour:
     m_Bits: 8
   model_body: {fileID: 8847939764698944574}
   flames: {fileID: 8149905429643795732}
+  onfire: 0
+  wallblood: {fileID: 0}
 --- !u!135 &2270759515549565939
 SphereCollider:
   m_ObjectHideFlags: 0
