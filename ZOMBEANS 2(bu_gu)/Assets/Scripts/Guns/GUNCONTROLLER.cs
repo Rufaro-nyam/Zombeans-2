@@ -42,6 +42,7 @@ public class GUNCONTROLLER : MonoBehaviour
     public ParticleSystem blood_spray_green;
     public ParticleSystem stone_hit_particles;
     public ParticleSystem shotun_flame;
+    public ParticleSystem bullet_cases;
 
     //CAMSHAKE
     public Camshake Camera_shake;
@@ -258,6 +259,7 @@ public class GUNCONTROLLER : MonoBehaviour
                         cheese_graater_muzzleflash.Play();
                         cheese_flash.transform.rotation = Random.rotation;
                         cheese_glow.SetActive(true);
+                        bullet_cases.Play();
                     }
                     if (machine_gun)
                     {
