@@ -1,3 +1,5 @@
+using Leguar.LowHealth;
+using Leguar.LowHealth.Example;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,6 +21,11 @@ public class PLAYER : MonoBehaviour{
     public Cheese_grater_gun Gun2;
     //GFX
     public GameObject model;
+    //EFFECTS
+    public ExampleScript_DirectAccess l_h_directaccess;
+    //CAMSHAKE
+    public Camshake camera_shake;
+    public Vector3 proper_pos;
 
 
     // Start is called before the first frame update
@@ -28,6 +35,15 @@ public class PLAYER : MonoBehaviour{
         MainCamera = FindObjectOfType<Camera>();
         Health = 100;
         
+        
+    }
+
+    public void explosion_blur(float amount)
+    {
+        l_h_directaccess.wakingUp2 = amount;
+        l_h_directaccess.beingDizzy = amount/2f;
+        Vector3 p_pos = proper_pos;
+        camera_shake.shake_exp(0.9f, p_pos, 0.1f);
     }
 
     // Update is called once per frame

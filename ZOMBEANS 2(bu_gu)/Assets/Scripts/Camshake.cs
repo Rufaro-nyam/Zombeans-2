@@ -26,7 +26,11 @@ public class Camshake : MonoBehaviour
     {
         StartCoroutine(shaking(duration, proper_pos, shake_division));
     }
-     IEnumerator shaking(float duration, Vector3 proper_pos, float strength_division)
+    public void shake_exp(float duration, Vector3 proper_pos, float shake_division)
+    {
+        StartCoroutine(shaking(duration , proper_pos, shake_division ));
+    }
+    IEnumerator shaking(float duration, Vector3 proper_pos, float strength_division)
     {
         Vector3 startpos = transform.position;
         float elapsedTime = 0f;

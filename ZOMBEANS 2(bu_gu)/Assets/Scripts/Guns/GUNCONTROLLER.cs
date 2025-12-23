@@ -259,7 +259,7 @@ public class GUNCONTROLLER : MonoBehaviour
                         cheese_graater_muzzleflash.Play();
                         cheese_flash.transform.rotation = Random.rotation;
                         cheese_glow.SetActive(true);
-                        bullet_cases.Play();
+                        //bullet_cases.Play();
                     }
                     if (machine_gun)
                     {
