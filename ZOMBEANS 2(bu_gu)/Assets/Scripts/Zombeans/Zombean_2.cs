@@ -77,6 +77,11 @@ public class Zombean_2 : MonoBehaviour
                 Vector3 oppositedirection2 = directiontoplayer2.normalized;
                 Head.AddForce(oppositedirection2 * 40, ForceMode.Impulse);
                 StartCoroutine(reset_attack());
+                player.TryGetComponent<PLAYER>(out PLAYER p);
+                if (p)
+                {
+                    p.Damage(transform.position);
+                }
                 can_attack = false;
             }
         }
@@ -89,8 +94,8 @@ public class Zombean_2 : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         PLAYER p = collision.transform.GetComponent<PLAYER>();
-        if (p)
-            p.Damage(-collision.GetContact(0).normal);
+        /*if (p)
+            p.Damage(-collision.GetContact(0).normal);*/
     }
 
     public void plain_death()

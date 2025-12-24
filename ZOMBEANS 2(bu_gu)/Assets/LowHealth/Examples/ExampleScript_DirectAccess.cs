@@ -3,6 +3,7 @@
 
 using UnityEngine;
 using Leguar.LowHealth;
+using UnityEngine.UI;
 
 namespace Leguar.LowHealth.Example {
 
@@ -13,8 +14,10 @@ namespace Leguar.LowHealth.Example {
 
 		private float wakingUp1;
 		public float wakingUp2;
-		private float takingDamage;
+		public float takingDamage;
 		public float beingDizzy;
+
+		public RawImage blood_img;
 
 		void Start() {
 			wakingUp1 = 0f;
@@ -40,6 +43,8 @@ namespace Leguar.LowHealth.Example {
 		}
 
 		void Update() {
+
+			takingDamage = Mathf.Clamp(takingDamage, 0f, 1f);
 			
 		   if (wakingUp1>0f) {
 				wakingUp1 -= Time.deltaTime*0.1f;
@@ -54,8 +59,12 @@ namespace Leguar.LowHealth.Example {
 			}
 
 			if (takingDamage>0f) {
-				takingDamage -= Time.deltaTime*0.5f;
+				takingDamage -= Time.deltaTime*0.2f;
 				shaderAccessScript.SetColorLossEffect(takingDamage, 1f);
+				float newalpha = Mathf.Clamp01(takingDamage);
+				Color current_alpha = blood_img.color;
+				current_alpha.a = newalpha;
+				blood_img.color = current_alpha;
 //				shaderAccessScript.SetVisionLossEffect(takingDamage*0.5f); // Uncomment to add darkening effect to taking damage, but this will then clash with "Waking up 1" effect
 			}
 

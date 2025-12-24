@@ -24,6 +24,7 @@ public class PLAYER : MonoBehaviour{
     //EFFECTS
     public ExampleScript_DirectAccess l_h_directaccess;
     private GameObject[] muffle_audios;
+    public AudioSource earsting;
     //CAMSHAKE
     public Camshake camera_shake;
     public Vector3 proper_pos;
@@ -53,9 +54,13 @@ public class PLAYER : MonoBehaviour{
             if(dist > 0.35f) 
             {
                 l.cutoffFrequency -= (amount * 3f) * 22000;
+                earsting.Play();
+                earsting.volume += amount; ;
             }
             
         }
+        
+        //print(amount/2);
     }
 
     // Update is called once per frame
@@ -79,7 +84,11 @@ public class PLAYER : MonoBehaviour{
         }
 
         //AUDIO MUFFLE
-
+        if(earsting.volume > 0)
+        {
+            earsting.volume -= Time.deltaTime * 0.05f;
+            print(earsting.volume);
+        }
             
 
     }
@@ -97,11 +106,11 @@ public class PLAYER : MonoBehaviour{
     public void Damage( Vector3 push)
     {
         Health -= 200;
-
+        l_h_directaccess.takingDamage += 0.1f;
         if (Health <= 0)
             Debug.Log("DEAD");
 
-        MyRigidbody.AddForce(push * Push, ForceMode.Force);
+        //MyRigidbody.AddForce(push * Push, ForceMode.Force);
              
     }
 }

@@ -158,6 +158,12 @@ public class Zombean_1 : MonoBehaviour
                 Head.AddForce(oppositedirection2 * 40, ForceMode.Impulse);
                 StartCoroutine(reset_attack());
                 can_attack = false;
+                player.TryGetComponent<PLAYER>(out PLAYER p);
+                if (p)
+                {
+                    p.Damage(transform.position);
+                }
+                
             }
         }
 
@@ -168,9 +174,9 @@ public class Zombean_1 : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        PLAYER p = collision.transform.GetComponent<PLAYER>();
+        /*PLAYER p = collision.transform.GetComponent<PLAYER>();
         if (p)
-            p.Damage(-collision.GetContact(0).normal);
+            p.Damage(-collision.GetContact(0).normal);*/
         if (collision.transform.tag == "STONE")
         {
             print("stunned");
