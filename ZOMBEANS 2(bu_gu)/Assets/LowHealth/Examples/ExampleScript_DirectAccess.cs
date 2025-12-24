@@ -64,9 +64,20 @@ namespace Leguar.LowHealth.Example {
 				float sin = Mathf.Sin((beingDizzy)*Mathf.PI*10f);
 				float dv = smoothCurve(1f-beingDizzy)*0.8f + sin*0.2f*beingDizzy;
 				shaderAccessScript.SetDoubleVisionEffect(dv);
-			}
 
-		}
+
+            }
+            AudioLowPassFilter[] filters = FindObjectsOfType<AudioLowPassFilter>();
+            foreach (AudioLowPassFilter l in filters)
+            {
+				if(l.cutoffFrequency < 22000) 
+				{
+                    l.cutoffFrequency += Time.deltaTime * (0.05f * 22000);
+                }
+
+            }
+
+        }
 
 		private float smoothCurve(float time) {
 			if (time>=1f) {

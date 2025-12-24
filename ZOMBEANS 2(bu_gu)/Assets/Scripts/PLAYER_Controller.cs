@@ -23,6 +23,7 @@ public class PLAYER : MonoBehaviour{
     public GameObject model;
     //EFFECTS
     public ExampleScript_DirectAccess l_h_directaccess;
+    private GameObject[] muffle_audios;
     //CAMSHAKE
     public Camshake camera_shake;
     public Vector3 proper_pos;
@@ -34,6 +35,7 @@ public class PLAYER : MonoBehaviour{
         MyRigidbody = GetComponent<Rigidbody>();
         MainCamera = FindObjectOfType<Camera>();
         Health = 100;
+    
         
         
     }
@@ -44,6 +46,16 @@ public class PLAYER : MonoBehaviour{
         l_h_directaccess.beingDizzy = amount/2f;
         Vector3 p_pos = proper_pos;
         camera_shake.shake_exp(0.9f, p_pos, 0.1f);
+        AudioLowPassFilter[] filters = FindObjectsOfType<AudioLowPassFilter>();
+        foreach(AudioLowPassFilter l in filters)
+        {
+            float dist = 2.5f * amount;
+            if(dist > 0.35f) 
+            {
+                l.cutoffFrequency -= (amount * 3f) * 22000;
+            }
+            
+        }
     }
 
     // Update is called once per frame
@@ -65,6 +77,8 @@ public class PLAYER : MonoBehaviour{
 
             transform.LookAt( new Vector3( PointToLook.x, transform.position.y, PointToLook.z) );
         }
+
+        //AUDIO MUFFLE
 
             
 
