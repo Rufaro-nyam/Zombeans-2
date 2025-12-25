@@ -1,34 +1,24 @@
 using UnityEngine;
 
-public class Acid_spit : MonoBehaviour
+public class Acid_pool : MonoBehaviour
 {
-    private Transform target;
-    public bool is_mouth;
     private ParticleSystem particles;
-    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-        transform.LookAt(target);
         particles = GetComponent<ParticleSystem>();
         ParticleSystem.CollisionModule collision_mod = particles.collision;
         collision_mod.sendCollisionMessages = true;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (is_mouth) { transform.LookAt(target); }
+        
     }
 
     private void OnParticleCollision(GameObject other)
     {
-        other.TryGetComponent<PLAYER>(out PLAYER player);
-        if (player)
-        {
-            player.acid_damage();
-        }
+        print("hacid touched something");
     }
 }

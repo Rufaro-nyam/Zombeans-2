@@ -3,6 +3,7 @@ using Leguar.LowHealth.Example;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PLAYER : MonoBehaviour{
 
@@ -25,6 +26,8 @@ public class PLAYER : MonoBehaviour{
     public ExampleScript_DirectAccess l_h_directaccess;
     private GameObject[] muffle_audios;
     public AudioSource earsting;
+    public RawImage[] acid_ui;
+    private float acid_dmg_amount;
     //CAMSHAKE
     public Camshake camera_shake;
     public Vector3 proper_pos;
@@ -63,6 +66,12 @@ public class PLAYER : MonoBehaviour{
         //print(amount/2);
     }
 
+    public void wall_collision_shake()
+    {
+        Vector3 p_pos = proper_pos;
+        camera_shake.shake_exp(0.9f, p_pos, 0.1f);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -89,6 +98,21 @@ public class PLAYER : MonoBehaviour{
             earsting.volume -= Time.deltaTime * 0.05f;
             print(earsting.volume);
         }
+
+        //ACID
+        acid_dmg_amount = Mathf.Clamp(acid_dmg_amount, 0f, 0.9f);
+        foreach(RawImage r in acid_ui)
+        {
+            float newalpha = Mathf.Clamp01(acid_dmg_amount);
+            Color current_alpha = r.color;
+            current_alpha.a = newalpha;
+            r.color = current_alpha;
+        }
+
+        if(acid_dmg_amount > 0)
+        {
+            acid_dmg_amount -= Time.deltaTime * 0.05f;
+        }
             
 
     }
@@ -97,6 +121,8 @@ public class PLAYER : MonoBehaviour{
     {
         MyRigidbody.AddForce(direction * 10, ForceMode.VelocityChange);
         print("hit by large");
+        l_h_directaccess.takingDamage += 0.5f;
+        //APPLY DAMAGE HERE
     }
 
     private void FixedUpdate()
@@ -112,5 +138,15 @@ public class PLAYER : MonoBehaviour{
 
         //MyRigidbody.AddForce(push * Push, ForceMode.Force);
              
+    }
+
+    public void acid_damage()
+    {
+        acid_dmg_amount += 0.01f;
+    }
+
+    private void OnParticleCollision(GameObject other)
+    {
+        print("hacid touched something");
     }
 }

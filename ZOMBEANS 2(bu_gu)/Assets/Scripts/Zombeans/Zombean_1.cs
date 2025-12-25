@@ -48,6 +48,8 @@ public class Zombean_1 : MonoBehaviour
     public ParticleSystem blood_mist;
     public ParticleSystem blood_spray;
 
+    public GameObject collision_smoke;
+
     public GameObject[] splatter;
     public GameObject acid;
     public GameObject explosion_splatter;
@@ -180,6 +182,7 @@ public class Zombean_1 : MonoBehaviour
         if (collision.transform.tag == "STONE")
         {
             print("stunned");
+            StartCoroutine(stunned());
         }
     
 
@@ -208,6 +211,17 @@ public class Zombean_1 : MonoBehaviour
             {
                 print("stunned");
                 StartCoroutine(stunned());
+                Instantiate(collision_smoke, transform.position, Quaternion.identity);
+                GameObject pl = GameObject.FindGameObjectWithTag("Player");
+                if (pl)
+                {
+                    pl.TryGetComponent<PLAYER>(out PLAYER player);
+                    if (player)
+                    {
+                        player.wall_collision_shake();
+                    }
+                }
+
 
             }
             PLAYER p = other.transform.GetComponent<PLAYER>(); 
