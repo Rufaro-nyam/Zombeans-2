@@ -54,6 +54,7 @@ public class Zombean_1 : MonoBehaviour
     public GameObject acid;
     public GameObject explosion_splatter;
     public LayerMask ground_layer;
+    public GameObject explosion_splatter_smoke;
 
 
     public GameObject model_body;
@@ -352,7 +353,7 @@ public class Zombean_1 : MonoBehaviour
                 if (Physics.Raycast(rayorigin, raydirection, out hit, 10f, ground_layer))
                 {
                     print(hit.collider.name);
-                    Instantiate(explosion_splatter, hit.point, hit.transform.rotation);
+                    Instantiate(explosion_splatter, new Vector3(hit.point.x, hit.point.y + 0.01f, hit.point.z) , hit.transform.rotation);
 
                 }
             }
@@ -442,7 +443,7 @@ public class Zombean_1 : MonoBehaviour
                 if (Physics.Raycast(rayorigin, raydirection, out hit, 10f, ground_layer))
                 {
                     print(hit.collider.name);
-                    Instantiate(explosion_splatter, hit.point, hit.transform.rotation);
+                    Instantiate(explosion_splatter, new Vector3(hit.point.x, hit.point.y + 0.01f, hit.point.z), hit.transform.rotation);
 
                 }
             }
@@ -538,7 +539,7 @@ public class Zombean_1 : MonoBehaviour
                 if (Physics.Raycast(rayorigin, raydirection, out hit, 10f, ground_layer))
                 {
                     print(hit.collider.name);
-                    Instantiate(explosion_splatter, hit.point, hit.transform.rotation);
+                    Instantiate(explosion_splatter, new Vector3(hit.point.x, hit.point.y + 0.01f, hit.point.z), hit.transform.rotation);
 
                 }
             }
@@ -633,6 +634,7 @@ public class Zombean_1 : MonoBehaviour
         print("explosion");
         Instantiate(explosion, transform.position, Quaternion.identity);
         Instantiate(exp_mist, transform.position, Quaternion.identity);
+        Instantiate(explosion_splatter_smoke, transform.position, Quaternion.identity);
         Collider[] colliders = Physics.OverlapSphere(transform.position, explosion_radius);
 
         foreach (Collider nearby in colliders)
@@ -657,6 +659,12 @@ public class Zombean_1 : MonoBehaviour
                     
                 }
                 rb.AddExplosionForce(explosion_force, transform.position, explosion_radius);
+            }
+            if(nearby.TryGetComponent<PLAYER>(out PLAYER player))
+            {
+                float dist = Vector3.Distance(transform.position, player.transform.position);
+                print("distance to player is " + dist);
+                player.acid_explosion_damage((9 - dist)/12);
             }
         }
     }

@@ -11150,6 +11150,7 @@ MonoBehaviour:
   joint: {fileID: 0}
   blood_mist: {fileID: 4256463947384817497}
   blood_spray: {fileID: 3607460690979101584}
+  collision_smoke: {fileID: 0}
   splatter:
   - {fileID: 5826769550237389537, guid: ab6e9759a99278342b58d997b74401c9, type: 3}
   - {fileID: 2907372286601669921, guid: 65dde737fd5992e45ae0749134ae1758, type: 3}
@@ -11162,8 +11163,11 @@ MonoBehaviour:
   ground_layer:
     serializedVersion: 2
     m_Bits: 8
+  explosion_splatter_smoke: {fileID: 3943624493095794338, guid: 51838f2d0964ee84aa6b9fdcff76bf82, type: 3}
   model_body: {fileID: 5863713031579649408}
   flames: {fileID: 1146839424347919205}
+  onfire: 0
+  wallblood: {fileID: 0}
 --- !u!135 &3679834819657355214
 SphereCollider:
   m_ObjectHideFlags: 0

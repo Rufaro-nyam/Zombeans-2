@@ -46,8 +46,8 @@ public class PLAYER : MonoBehaviour{
 
     public void explosion_blur(float amount)
     {
-        l_h_directaccess.wakingUp2 = amount;
-        l_h_directaccess.beingDizzy = amount/2f;
+        l_h_directaccess.wakingUp2 += amount;
+        l_h_directaccess.beingDizzy += amount/2f;
         Vector3 p_pos = proper_pos;
         camera_shake.shake_exp(0.9f, p_pos, 0.1f);
         AudioLowPassFilter[] filters = FindObjectsOfType<AudioLowPassFilter>();
@@ -64,6 +64,11 @@ public class PLAYER : MonoBehaviour{
         }
         
         //print(amount/2);
+    }
+
+    public void acid_explosion_damage(float amount)
+    {
+        acid_dmg_amount += amount;
     }
 
     public void wall_collision_shake()
