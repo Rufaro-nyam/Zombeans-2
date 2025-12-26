@@ -77,7 +77,11 @@ public class Zombean_1 : MonoBehaviour
         //UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
         B_collider = GetComponent<BoxCollider>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-        charge_target.transform.position = player.transform.position;
+        if (charge_target)
+        {
+            charge_target.transform.position = player.transform.position;
+        }
+        
 
 
     }
@@ -590,7 +594,7 @@ public class Zombean_1 : MonoBehaviour
             {
                 charge_target.transform.position = player.transform.position;
                 is_carging = true;
-                nav.speed = 30;
+                nav.speed = 60;
                 //print("started");
                 yield return new WaitForSeconds(0.5f);
                 charge_target.transform.position = player.transform.position;
