@@ -1,5 +1,5 @@
-using Leguar.LowHealth;
-using Leguar.LowHealth.Example;
+//using Leguar.LowHealth;
+//using Leguar.LowHealth.Example;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +23,7 @@ public class PLAYER : MonoBehaviour{
     //GFX
     public GameObject model;
     //EFFECTS
-    public ExampleScript_DirectAccess l_h_directaccess;
+   // public ExampleScript_DirectAccess l_h_directaccess;
     private GameObject[] muffle_audios;
     public AudioSource earsting;
     public RawImage[] acid_ui;
@@ -46,8 +46,8 @@ public class PLAYER : MonoBehaviour{
 
     public void explosion_blur(float amount)
     {
-        l_h_directaccess.wakingUp2 += amount;
-        l_h_directaccess.beingDizzy += amount/2f;
+       // l_h_directaccess.wakingUp2 += amount;
+       // l_h_directaccess.beingDizzy += amount/2f;
         Vector3 p_pos = proper_pos;
         camera_shake.shake_exp(0.9f, p_pos, 0.1f);
         AudioLowPassFilter[] filters = FindObjectsOfType<AudioLowPassFilter>();
@@ -126,7 +126,7 @@ public class PLAYER : MonoBehaviour{
     {
         MyRigidbody.AddForce(direction * 10, ForceMode.VelocityChange);
         print("hit by large");
-        l_h_directaccess.takingDamage += 0.5f;
+       // l_h_directaccess.takingDamage += 0.5f;
         //APPLY DAMAGE HERE
     }
 
@@ -137,7 +137,7 @@ public class PLAYER : MonoBehaviour{
     public void Damage( Vector3 push)
     {
         Health -= 200;
-        l_h_directaccess.takingDamage += 0.1f;
+        //l_h_directaccess.takingDamage += 0.1f;
         if (Health <= 0)
             Debug.Log("DEAD");
 
