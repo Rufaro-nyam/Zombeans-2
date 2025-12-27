@@ -34,12 +34,14 @@ public class Player_cam : MonoBehaviour
     //CAMSHAKE
     public Camshake camera_shake;
     
+    
 
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        
         if (snipe_mode)
         {
             Cursor.lockState = CursorLockMode.Locked;

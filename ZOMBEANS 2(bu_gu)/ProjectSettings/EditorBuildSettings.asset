@@ -8,5 +8,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/FPS.unity
+    guid: 09fca855a5af5074db878c0425665c46
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

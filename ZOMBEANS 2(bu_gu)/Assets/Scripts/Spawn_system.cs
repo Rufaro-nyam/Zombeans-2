@@ -8,7 +8,7 @@ public class Spawn_system : MonoBehaviour
     public Transform player;
     public Transform test_pos;
     private int spawn_amount = 0;
-    private int target_spawn_amount = 400;
+    private int target_spawn_amount = 300;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
