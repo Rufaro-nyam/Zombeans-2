@@ -103,6 +103,17 @@ public class PLAYER : MonoBehaviour{
             earsting.volume -= Time.deltaTime * 0.05f;
             print(earsting.volume);
         }
+        AudioLowPassFilter[] filters = FindObjectsOfType<AudioLowPassFilter>();
+        foreach (AudioLowPassFilter l in filters)
+        {
+            if(l.cutoffFrequency <= 22000)
+            {
+                l.cutoffFrequency += Time.deltaTime * 500;
+            }
+
+                
+
+        }
 
         //ACID
         acid_dmg_amount = Mathf.Clamp(acid_dmg_amount, 0f, 0.9f);
