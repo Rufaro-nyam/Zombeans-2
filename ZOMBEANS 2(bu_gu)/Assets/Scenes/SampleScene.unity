@@ -11074,7 +11074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &254466272
 Transform:
   m_ObjectHideFlags: 0
@@ -18772,7 +18772,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1092128216
 Transform:
   m_ObjectHideFlags: 0
@@ -19985,7 +19985,7 @@ MonoBehaviour:
   - {fileID: 569992126}
   - {fileID: 87940246}
   - {fileID: 453942860}
-  zombean_1: {fileID: 273154695434543627, guid: 1569de110ad34a74ea79934f27009357, type: 3}
+  zombean_1: {fileID: 1810762192117003290, guid: 0a76bf8e3d209b7488bd5b98bb26db06, type: 3}
   player: {fileID: 2060174981}
   test_pos: {fileID: 1712808680}
 --- !u!1 &1214693513
@@ -30028,7 +30028,6 @@ GameObject:
   - component: {fileID: 2060174985}
   - component: {fileID: 2060174986}
   - component: {fileID: 2060174988}
-  - component: {fileID: 2060174987}
   m_Layer: 0
   m_Name: PLAYER
   m_TagString: Player
@@ -30225,20 +30224,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zmb1: {fileID: 0}
   is_zmb_1: 0
---- !u!114 &2060174987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2060174977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d19b7577bbaf3d84d935d43d6a6467a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  blood_droplets: {fileID: 1538747685}
-  red_tint: {fileID: 914014212}
 --- !u!114 &2060174988
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30252,7 +30237,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blood_droplets: {fileID: 1538747685}
-  red_tint: {fileID: 0}
+  red_tint: {fileID: 914014212}
+  acid_drops:
+  - {fileID: 895518834}
+  - {fileID: 1995971525}
+  - {fileID: 219462270}
+  green_tint: {fileID: 1616549834}
 --- !u!1 &2065974158
 GameObject:
   m_ObjectHideFlags: 0

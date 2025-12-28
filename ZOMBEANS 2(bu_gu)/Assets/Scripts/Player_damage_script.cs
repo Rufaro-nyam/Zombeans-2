@@ -5,6 +5,9 @@ public class Player_damage_script : MonoBehaviour
 {
     public RawImage blood_droplets;
     public RawImage red_tint;
+
+    public RawImage[] acid_drops;
+    public RawImage green_tint;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -19,7 +22,31 @@ public class Player_damage_script : MonoBehaviour
             Color droplets_color = blood_droplets.color;
             droplets_color.a -= Time.deltaTime * 0.1f;
             blood_droplets.color = droplets_color;
-            red_tint.color = droplets_color;
+            //red_tint.color = droplets_color;
+        }
+
+        if(red_tint.color.a > 0)
+        {
+            Color tint_color = red_tint.color;
+            tint_color.a -= Time.deltaTime * 0.1f;
+            red_tint.color = tint_color;
+        }
+
+        foreach(RawImage r in acid_drops)
+        {
+            if(r.color.a > 0)
+            {
+                Color droplets_color = r.color;
+                droplets_color.a -= Time.deltaTime * 0.1f;
+                r.color = droplets_color;
+            }
+        }
+
+        if(green_tint.color.a > 0)
+        {
+            Color green_tint_color = blood_droplets.color;
+            green_tint_color.a -= Time.deltaTime * 0.1f;
+            green_tint.color = green_tint_color;
         }
     }
 
@@ -28,6 +55,26 @@ public class Player_damage_script : MonoBehaviour
         Color droplets_color = blood_droplets.color;
         droplets_color.a += 0.1f;
         blood_droplets.color = droplets_color;
-        red_tint.color = droplets_color;
+        //red_tint.color = droplets_color;
+
+        Color tint_color = red_tint.color;
+        tint_color.a += 0.1f;
+        red_tint.color = tint_color;
+
+    }
+
+    public void acid_damage()
+    {
+        print("player appliying acid damage");
+        foreach(RawImage r in acid_drops)
+        {
+            Color droplets_color = r.color;
+            droplets_color.a += 0.1f;
+            r.color = droplets_color;
+        }
+
+        Color g_t_color = green_tint.color;
+        g_t_color.a += 0.1f;
+        green_tint.color = g_t_color;
     }
 }

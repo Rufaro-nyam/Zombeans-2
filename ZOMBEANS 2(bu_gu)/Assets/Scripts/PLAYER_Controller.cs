@@ -200,7 +200,8 @@ public class PLAYER : MonoBehaviour{
 
     public void acid_damage()
     {
-        acid_dmg_amount += 0.01f;
+        //acid_dmg_amount += 0.01f;
+        damage_script.normal_damage();
     }
 
     private void OnParticleCollision(GameObject other)
