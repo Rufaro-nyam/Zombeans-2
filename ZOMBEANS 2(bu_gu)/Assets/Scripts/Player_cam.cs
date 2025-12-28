@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering;
 
 public class Player_cam : MonoBehaviour
 {
@@ -31,6 +33,8 @@ public class Player_cam : MonoBehaviour
     public TrailRenderer bullet_trail;
     public Transform firepoint;
 
+
+
     //CAMSHAKE
     public Camshake camera_shake;
     
@@ -41,6 +45,7 @@ public class Player_cam : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+
         
         if (snipe_mode)
         {

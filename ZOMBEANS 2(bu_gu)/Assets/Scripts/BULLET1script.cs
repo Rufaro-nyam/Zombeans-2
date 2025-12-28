@@ -11,6 +11,7 @@ public class BULLET1script : MonoBehaviour
     public float explosion_force, explosion_radius;
     public GameObject explosion;
     private GameObject player;
+    private Explosion_blur_effect exp_blur;
     // Start is called before the first frame update
     void Start()
     {
@@ -62,6 +63,7 @@ public class BULLET1script : MonoBehaviour
         {
             player_script.explosion_blur(blur_num);
         }
+        
         
         foreach (Collider nearby in colliders)
         {

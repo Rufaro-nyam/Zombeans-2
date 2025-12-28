@@ -3,6 +3,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.UI;
 
 public class PLAYER : MonoBehaviour{
@@ -28,6 +30,12 @@ public class PLAYER : MonoBehaviour{
     public AudioSource earsting;
     public RawImage[] acid_ui;
     private float acid_dmg_amount;
+    public Player_damage_script damage_script;
+
+    public PostProcessVolume volume;
+    private DepthOfField dof;
+    private ChromaticAberration cma;
+    
     //CAMSHAKE
     public Camshake camera_shake;
     public Vector3 proper_pos;
@@ -39,17 +47,27 @@ public class PLAYER : MonoBehaviour{
         MyRigidbody = GetComponent<Rigidbody>();
         MainCamera = FindObjectOfType<Camera>();
         Health = 100;
-    
-        
-        
+
+        if(volume.profile.TryGetSettings<DepthOfField>(out dof))
+        {
+
+        }
+        if (volume.profile.TryGetSettings<ChromaticAberration>(out cma))
+        {
+
+        }
+
+
+
     }
 
     public void explosion_blur(float amount)
     {
        // l_h_directaccess.wakingUp2 += amount;
        // l_h_directaccess.beingDizzy += amount/2f;
+
         Vector3 p_pos = proper_pos;
-        camera_shake.shake_exp(0.9f, p_pos, 0.1f);
+        camera_shake.shake_exp(0.9f, p_pos, 1f);
         AudioLowPassFilter[] filters = FindObjectsOfType<AudioLowPassFilter>();
         foreach(AudioLowPassFilter l in filters)
         {
@@ -59,27 +77,24 @@ public class PLAYER : MonoBehaviour{
                 l.cutoffFrequency -= (amount * 3f) * 22000;
                 earsting.Play();
                 earsting.volume += amount; ;
+                dof.focusDistance.value -= amount * 12;
+                cma.intensity.value += amount;
             }
             
         }
         
+        //reset_blur();
+
+
         //print(amount/2);
     }
 
-    public void acid_explosion_damage(float amount)
-    {
-        acid_dmg_amount += amount;
-    }
 
-    public void wall_collision_shake()
-    {
-        Vector3 p_pos = proper_pos;
-        camera_shake.shake_exp(0.9f, p_pos, 0.1f);
-    }
 
     // Update is called once per frame
     void Update()
     {
+
         //model.transform.position = new Vector3(transform.position.x, model.transform.position.y, transform.position.z);
 
         MoveInput = new Vector3(Input.GetAxisRaw("Horizontal"), 0f, Input.GetAxisRaw("Vertical"));
@@ -129,10 +144,36 @@ public class PLAYER : MonoBehaviour{
         {
             acid_dmg_amount -= Time.deltaTime * 0.05f;
         }
-            
+        //
+        /*if (dof.focusDistance.value < 5)
+        {
+
+            dof.focusDistance.value += Time.deltaTime * 2f;
+        }
+        else
+        {
+            return;
+        }*/
+
 
     }
 
+    public void reset_blur()
+    {
+        LeanTween.value(dof.focusDistance.value, 5, 6);
+
+    }
+
+    public void acid_explosion_damage(float amount)
+    {
+        acid_dmg_amount += amount;
+    }
+
+    public void wall_collision_shake()
+    {
+        Vector3 p_pos = proper_pos;
+        camera_shake.shake_exp(0.9f, p_pos, 0.1f);
+    }
     public void large_knockback(Vector3 direction)
     {
         MyRigidbody.AddForce(direction * 10, ForceMode.VelocityChange);
@@ -151,6 +192,7 @@ public class PLAYER : MonoBehaviour{
         //l_h_directaccess.takingDamage += 0.1f;
         if (Health <= 0)
             Debug.Log("DEAD");
+        damage_script.normal_damage();
 
         //MyRigidbody.AddForce(push * Push, ForceMode.Force);
              
