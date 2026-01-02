@@ -8,6 +8,7 @@ TagManager:
   - STONE
   - ZOMBEAN2
   - ZOMBEAN3
+  - Spawner
   layers:
   - Default
   - TransparentFX

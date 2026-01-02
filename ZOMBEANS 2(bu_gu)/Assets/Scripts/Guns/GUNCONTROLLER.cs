@@ -66,10 +66,13 @@ public class GUNCONTROLLER : MonoBehaviour
     public ParticleSystem shotgun_muzzle_flash;
     public GameObject shotgun_flash;
     public GameObject shotgun_glow;
+
+    //AUDIO
+    private AudioSource shot;
     // Start is called before the first frame update
     void Start()
     {
-        
+        shot = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -260,6 +263,12 @@ public class GUNCONTROLLER : MonoBehaviour
                         cheese_flash.transform.rotation = Random.rotation;
                         cheese_glow.SetActive(true);
                         bullet_cases.Play();
+                        if (shot)
+                        {
+                            shot.pitch = UnityEngine.Random.Range(1f, 1.5f);
+                            shot.Play();
+
+                        }
                     }
                     if (machine_gun)
                     {

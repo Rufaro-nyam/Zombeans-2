@@ -28,12 +28,12 @@ public class Explosion_blur_effect : MonoBehaviour
         if (dof.focusDistance.value < 5)
         {
 
-            dof.focusDistance.value += Time.deltaTime * 1f;
+            dof.focusDistance.value += Time.deltaTime * 0.2f;
         }
         if (cma.intensity.value > 0)
         {
 
-            cma.intensity.value -= Time.deltaTime * 0.5f;
+            cma.intensity.value -= Time.deltaTime * 0.1f;
         }
 
     }

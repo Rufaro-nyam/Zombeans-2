@@ -65,16 +65,13 @@ public class Player_damage_script : MonoBehaviour
 
     public void acid_damage()
     {
-        print("player appliying acid damage");
-        foreach(RawImage r in acid_drops)
-        {
-            Color droplets_color = r.color;
-            droplets_color.a += 0.1f;
-            r.color = droplets_color;
-        }
+        Color droplets_color = blood_droplets.color;
+        droplets_color.a += 0.01f;
+        blood_droplets.color = droplets_color;
+        //red_tint.color = droplets_color;
 
-        Color g_t_color = green_tint.color;
-        g_t_color.a += 0.1f;
-        green_tint.color = g_t_color;
+        Color tint_color = red_tint.color;
+        tint_color.a += 0.01f;
+        red_tint.color = tint_color;
     }
 }

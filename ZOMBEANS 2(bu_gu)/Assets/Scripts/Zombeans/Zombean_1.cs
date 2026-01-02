@@ -68,6 +68,9 @@ public class Zombean_1 : MonoBehaviour
 
     public ParticleSystem wallblood;
 
+    //ENDLESS MODE
+    private GameObject spawn_System;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -81,7 +84,8 @@ public class Zombean_1 : MonoBehaviour
         {
             charge_target.transform.position = player.transform.position;
         }
-        
+        spawn_System = GameObject.FindGameObjectWithTag("Spawner");
+
 
 
     }
@@ -347,9 +351,20 @@ public class Zombean_1 : MonoBehaviour
 
         if (Current_Health <= 0 && dead == false)
         {
+            if (spawn_System)
+            {
+                spawn_System.TryGetComponent<Spawn_system>(out Spawn_system spss);
+                spss.add_zombean_death();
+            }
+            else
+            {
+                print("no spawner found");
+            }
+
             if (is_explosive) 
             {
-                
+
+
                 explosion_knockback();
                 Destroy(gameObject);
                 dead = true;
@@ -437,6 +452,15 @@ public class Zombean_1 : MonoBehaviour
         }
         if (Current_Health <= 0 && dead == false)
         {
+            if (spawn_System)
+            {
+                spawn_System.TryGetComponent<Spawn_system>(out Spawn_system spss);
+                spss.add_zombean_death();
+            }
+            else
+            {
+                print("no spawner found");
+            }
             if (is_explosive)
             {
 
@@ -532,6 +556,15 @@ public class Zombean_1 : MonoBehaviour
 
         if (Current_Health <= 0 && dead == false)
         {
+            if (spawn_System)
+            {
+                spawn_System.TryGetComponent<Spawn_system>(out Spawn_system spss);
+                spss.add_zombean_death();
+            }
+            else
+            {
+                print("no spawner found");
+            }
             StartCoroutine(zombean_on_fire());
             if (is_explosive)
             {
@@ -630,6 +663,15 @@ public class Zombean_1 : MonoBehaviour
         if (is_explosive)
         {
             Damage();
+        }
+        if (spawn_System)
+        {
+            spawn_System.TryGetComponent<Spawn_system>(out Spawn_system spss);
+            spss.add_zombean_death();
+        }
+        else
+        {
+            print("no spawner found");
         }
     }
 

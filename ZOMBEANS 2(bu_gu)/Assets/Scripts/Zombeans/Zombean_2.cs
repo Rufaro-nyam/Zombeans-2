@@ -37,6 +37,9 @@ public class Zombean_2 : MonoBehaviour
     public bool onfire;
     private float fire_time = 35;
     // Start is called before the first frame update
+
+    //ENDLESS MODE
+    private GameObject spawn_System;
     void Start()
     {
         Current_Health = Health;
@@ -45,7 +48,7 @@ public class Zombean_2 : MonoBehaviour
        // UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
         B_collider = GetComponent<BoxCollider>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
-
+        spawn_System = GameObject.FindGameObjectWithTag("Spawner");
 
     }
 
@@ -168,6 +171,15 @@ public class Zombean_2 : MonoBehaviour
 
         if (Current_Health <= 0 && dead == false)
         {
+            if (spawn_System)
+            {
+                spawn_System.TryGetComponent<Spawn_system>(out Spawn_system spss);
+                spss.add_zombean_death();
+            }
+            else
+            {
+                print("no spawner found");
+            }
             StartCoroutine(zombean_on_fire());
 
            
@@ -222,6 +234,15 @@ public class Zombean_2 : MonoBehaviour
 
         if (Current_Health <= 0 && dead == false)
         {
+            if (spawn_System)
+            {
+                spawn_System.TryGetComponent<Spawn_system>(out Spawn_system spss);
+                spss.add_zombean_death();
+            }
+            else
+            {
+                print("no spawner found");
+            }
             //Destroy(joint);
             //Anim.Play("Zombean_1_death");
             nav.speed = 0;
