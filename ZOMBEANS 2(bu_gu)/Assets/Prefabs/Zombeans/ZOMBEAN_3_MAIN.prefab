@@ -447,7 +447,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 94
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -500,7 +500,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 3
+      minMaxState: 94
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -553,7 +553,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startRotationX:
       serializedVersion: 2
-      minMaxState: 19
+      minMaxState: 0
       scalar: 0.72
       minScalar: 0
       maxCurve:
@@ -10965,6 +10965,7 @@ GameObject:
   - component: {fileID: 8185965159536044970}
   - component: {fileID: 1323624864671982398}
   - component: {fileID: 1189666566358294833}
+  - component: {fileID: 1686243690152927425}
   m_Layer: 6
   m_Name: ZOMBEAN_3_MAIN
   m_TagString: ZOMBEAN3
@@ -11105,7 +11106,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f442f45fef7ca409aa764d723ee456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!114 &2251970764427794963
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11168,6 +11168,7 @@ MonoBehaviour:
   flames: {fileID: 1146839424347919205}
   onfire: 0
   wallblood: {fileID: 0}
+  hitflash: {fileID: 1686243690152927425}
 --- !u!135 &3679834819657355214
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -11457,6 +11458,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1686243690152927425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8731231052738392760}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b120c05069369ed46995b3102a47176d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rend:
+  - {fileID: 4059244410070083642}
+  - {fileID: 8641831820930052336}
+  flash_color: {r: 1, g: 1, b: 1, a: 1}
+  flash_duration: 0.04
 --- !u!1001 &219731456619957529
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12680,6 +12698,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zmb1: {fileID: 2251970764427794963}
   zmb2: {fileID: 0}
+--- !u!23 &4059244410070083642 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5268959565835788257, guid: b27eaeee1d69c604bbb07185504a4a18, type: 3}
+  m_PrefabInstance: {fileID: 1059947318247262245}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4174327333916550002 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -5234448375175369897, guid: b27eaeee1d69c604bbb07185504a4a18, type: 3}
@@ -13604,6 +13627,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zmb1: {fileID: 2251970764427794963}
   zmb2: {fileID: 0}
+--- !u!137 &8641831820930052336 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8743813690021804245, guid: b27eaeee1d69c604bbb07185504a4a18, type: 3}
+  m_PrefabInstance: {fileID: 1059947318247262245}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1140937313725160801
 PrefabInstance:
   m_ObjectHideFlags: 0

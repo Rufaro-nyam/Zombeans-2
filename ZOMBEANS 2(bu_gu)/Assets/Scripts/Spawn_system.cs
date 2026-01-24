@@ -8,7 +8,7 @@ public class Spawn_system : MonoBehaviour
     public Transform player;
     public Transform test_pos;
     private int spawn_amount = 0;
-    private int target_spawn_amount = 10;
+    private int target_spawn_amount = 100;
     private int killed_amount = 0;
     private int wave = 0;
     private int zombean_range = 0;

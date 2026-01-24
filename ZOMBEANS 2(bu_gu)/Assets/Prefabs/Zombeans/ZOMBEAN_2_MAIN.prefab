@@ -279,6 +279,7 @@ GameObject:
   - component: {fileID: 510652297465393529}
   - component: {fileID: 8798425313435928754}
   - component: {fileID: 7537779697647129697}
+  - component: {fileID: 4488004191609254606}
   m_Layer: 6
   m_Name: ZOMBEAN_2_MAIN
   m_TagString: ZOMBEAN2
@@ -419,7 +420,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f442f45fef7ca409aa764d723ee456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!114 &1899682481147999998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -460,6 +460,8 @@ MonoBehaviour:
     m_Bits: 8
   model_body: {fileID: 919425985320700824}
   flames: {fileID: 7444096513166224325}
+  onfire: 0
+  hitflash: {fileID: 4488004191609254606}
 --- !u!135 &2151932322718607183
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -749,6 +751,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4488004191609254606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273154695434543627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b120c05069369ed46995b3102a47176d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rend:
+  - {fileID: 8288389760681751125}
+  - {fileID: 2171678403981601136}
+  flash_color: {r: 1, g: 1, b: 1, a: 1}
+  flash_duration: 0.04
 --- !u!1 &421814482882503496
 GameObject:
   m_ObjectHideFlags: 0

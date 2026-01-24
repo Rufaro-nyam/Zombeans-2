@@ -78,6 +78,19 @@ public class GUNCONTROLLER : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (is_grenade_launcher)
+            {
+                ShotCounter -= Time.deltaTime;
+                if (ShotCounter <= 0)
+                {
+                    ShotCounter = TimeBetweenShots;
+                    BULLET1script newBullet = Instantiate(bullet, firepoint.position, firepoint.rotation) as BULLET1script;
+                    //newBullet.SPEED = BulletSpeed;
+                }
+            }
+        }
         if (Input.GetMouseButton(0))
         {
             is_firing = true;
@@ -131,16 +144,7 @@ public class GUNCONTROLLER : MonoBehaviour
         }
         if (is_firing )
         {
-            if (is_grenade_launcher)
-            {
-                ShotCounter -= Time.deltaTime;
-                if (ShotCounter <= 0)
-                {
-                    ShotCounter = TimeBetweenShots;
-                    BULLET1script newBullet = Instantiate(bullet, firepoint.position, firepoint.rotation) as BULLET1script;
-                    //newBullet.SPEED = BulletSpeed;
-                }
-            }
+
             if (!is_automatic && manual_can_shoot == true && is_grenade_launcher == false) 
             {
 

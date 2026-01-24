@@ -9745,6 +9745,7 @@ GameObject:
   - component: {fileID: 5930981906990143071}
   - component: {fileID: 592064213212490680}
   - component: {fileID: 8214987770677614507}
+  - component: {fileID: 1608297012194070138}
   m_Layer: 6
   m_Name: ZOMBEAN_5_spitter
   m_TagString: ZOMBEAN3
@@ -9886,7 +9887,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4f442f45fef7ca409aa764d723ee456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
 --- !u!114 &1408530734643099223
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9935,6 +9935,7 @@ MonoBehaviour:
   joint: {fileID: 0}
   blood_mist: {fileID: 5438728022411596455}
   blood_spray: {fileID: 6491490792282162994}
+  collision_smoke: {fileID: 0}
   splatter:
   - {fileID: 2907372286601669921, guid: 65dde737fd5992e45ae0749134ae1758, type: 3}
   - {fileID: 2907372286601669921, guid: 65dde737fd5992e45ae0749134ae1758, type: 3}
@@ -9947,10 +9948,12 @@ MonoBehaviour:
   ground_layer:
     serializedVersion: 2
     m_Bits: 8
+  explosion_splatter_smoke: {fileID: 0}
   model_body: {fileID: 8847939764698944574}
   flames: {fileID: 8149905429643795732}
   onfire: 0
   wallblood: {fileID: 0}
+  hitflash: {fileID: 1608297012194070138}
 --- !u!135 &2270759515549565939
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -10240,6 +10243,23 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1608297012194070138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810762192117003290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b120c05069369ed46995b3102a47176d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rend:
+  - {fileID: 6649514237984940366}
+  - {fileID: 1440994588494592388}
+  flash_color: {r: 1, g: 1, b: 1, a: 1}
+  flash_duration: 0.04
 --- !u!1 &3870993773974524883
 GameObject:
   m_ObjectHideFlags: 0
@@ -12070,6 +12090,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zmb1: {fileID: 1408530734643099223}
   zmb2: {fileID: 0}
+--- !u!23 &1440994588494592388 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: -5268959565835788257, guid: b27eaeee1d69c604bbb07185504a4a18, type: 3}
+  m_PrefabInstance: {fileID: 2675021361655372187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2491947155098549872 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: b27eaeee1d69c604bbb07185504a4a18, type: 3}
@@ -12686,6 +12711,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zmb1: {fileID: 1408530734643099223}
   zmb2: {fileID: 0}
+--- !u!137 &6649514237984940366 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8743813690021804245, guid: b27eaeee1d69c604bbb07185504a4a18, type: 3}
+  m_PrefabInstance: {fileID: 2675021361655372187}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &7493728319286678033 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4819001077394492298, guid: b27eaeee1d69c604bbb07185504a4a18, type: 3}

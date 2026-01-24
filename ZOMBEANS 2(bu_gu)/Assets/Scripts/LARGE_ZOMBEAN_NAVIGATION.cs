@@ -17,6 +17,6 @@ public class LARGE_ZOMBEAN_NAVIGATION : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        agent.destination = player.position;
+        //agent.destination = player.position;
     }
 }

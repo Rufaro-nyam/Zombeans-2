@@ -36,6 +36,8 @@ public class Zombean_2 : MonoBehaviour
     public GameObject flames;
     public bool onfire;
     private float fire_time = 35;
+
+    public Hitflash hitflash;
     // Start is called before the first frame update
 
     //ENDLESS MODE
@@ -103,7 +105,7 @@ public class Zombean_2 : MonoBehaviour
 
     public void plain_death()
     {
-        
+        hitflash.flash();
         if (!dead)
         {
             nav.speed = 0;
@@ -143,6 +145,7 @@ public class Zombean_2 : MonoBehaviour
     }
     public void fire_damage(float damage)
     {
+        hitflash.flash();
         if (Current_Health > 0)
         {
             Current_Health -= damage;
@@ -209,6 +212,7 @@ public class Zombean_2 : MonoBehaviour
     }
     public void Damage()
     {
+        hitflash.flash();
         Current_Health -= 1;
         blood_mist.Play();
 

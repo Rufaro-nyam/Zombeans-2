@@ -68,6 +68,7 @@ public class Zombean_1 : MonoBehaviour
 
     public ParticleSystem wallblood;
 
+    public Hitflash hitflash;
     //ENDLESS MODE
     private GameObject spawn_System;
 
@@ -291,6 +292,7 @@ public class Zombean_1 : MonoBehaviour
 
     public void Damage()
     {
+        hitflash.flash();
         Current_Health -= 1;
         blood_mist.Play();
 
@@ -421,6 +423,7 @@ public class Zombean_1 : MonoBehaviour
 
     public void Sniper_Damage(Transform bullet_origin)
     {
+        hitflash.flash();
         Current_Health -= 15;
         blood_mist.Play();
 
@@ -520,6 +523,7 @@ public class Zombean_1 : MonoBehaviour
 
     public void fire_damage(float damage)
     {
+        hitflash.flash();
         if (Current_Health > 0) 
         {
             Current_Health -= damage;
@@ -644,6 +648,7 @@ public class Zombean_1 : MonoBehaviour
 
     public void plain_death()
     {
+        hitflash.flash();
         if (!dead)
         {
             nav.speed = 0;
