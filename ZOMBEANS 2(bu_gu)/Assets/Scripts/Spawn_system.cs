@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Spawn_system : MonoBehaviour
@@ -13,10 +14,16 @@ public class Spawn_system : MonoBehaviour
     private int wave = 0;
     private int zombean_range = 0;
 
+    public int max_to_spawn;
+    public int time_between_spawns;
+
 
     private bool added_zmb2 = false;
     private bool added_spitter;
     private bool added_expzmb;
+
+
+    public Transform backup_spawn;
 
     private bool corpse_wipeout = true;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,20 +46,35 @@ public class Spawn_system : MonoBehaviour
 
         while(spawn_amount < target_spawn_amount)
         {
-            int num = Random.Range(0, 100);
+            int num = Random.Range(0, max_to_spawn);
             float dist = Vector3.Distance(spawn_positions[num].position, player.position);
             int random_bean = Random.Range(0, zombean_range);
-            if (dist > 30f)
+            if (dist > 30f )
             {
-                Instantiate(zombeans[random_bean], spawn_positions[num].transform.position, Quaternion.identity);
-                print("zombean_spawned");
-                spawn_amount += 1;
-                yield return new WaitForSeconds(1);
-                //StartCoroutine(start_spawn());
+                if( spawn_positions[num].gameObject.active == true)
+                {
+                    Instantiate(zombeans[random_bean], spawn_positions[num].transform.position, Quaternion.identity);
+                    print("zombean_spawned");
+                    spawn_amount += 1;
+                    yield return new WaitForSeconds(time_between_spawns);
+                    //StartCoroutine(start_spawn());
+                }
+                else
+                {
+                    GameObject rand_bean = Instantiate(zombeans[random_bean], backup_spawn.transform.position, Quaternion.identity);
+                    print("zombean_spawned");
+                    spawn_amount += 1;
+                    yield return new WaitForSeconds(0.1f);
+                    Destroy(rand_bean);
+                    print("rand bean destroyed");
+                    //StartCoroutine(start_spawn());
+                }
+
             }
             else
             {
                 //StartCoroutine(start_spawn());
+                //StopAllCoroutines();
             }
             
         }

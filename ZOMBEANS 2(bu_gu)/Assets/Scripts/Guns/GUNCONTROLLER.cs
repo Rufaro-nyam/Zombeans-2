@@ -98,9 +98,11 @@ public class GUNCONTROLLER : MonoBehaviour
             {
                 foreach(ParticleSystem f in flames)
                 {
+                    var main = f.main;
+                    main.prewarm = true;
                     f.Play();
                     Vector3 p_pos = player_Cam.proper_pos;
-                    Camera_shake.shake(0.2f, p_pos, 4f);
+                    Camera_shake.shake(0.2f, p_pos, 8f);
                 }
                 
             }
@@ -114,6 +116,9 @@ public class GUNCONTROLLER : MonoBehaviour
                 foreach (ParticleSystem f in flames)
                 {
                     f.Stop();
+                    var main = f.main;
+                    main.prewarm = false;
+                   
                 }
 
             }
