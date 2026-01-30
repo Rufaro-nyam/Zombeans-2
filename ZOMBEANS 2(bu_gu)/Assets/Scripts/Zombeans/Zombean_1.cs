@@ -8,6 +8,9 @@ using UnityEngine.UIElements;
 
 public class Zombean_1 : MonoBehaviour
 {
+    public ZOMBEAN_NAVIGATION zomb_nav;
+    public Zombean_1 zombean1;
+
     public bool is_explosive;
     public float explosion_force, explosion_radius;
     public GameObject explosion;
@@ -97,6 +100,7 @@ public class Zombean_1 : MonoBehaviour
         if (onfire)
         {
             fire_damage(1*Time.deltaTime);
+            nav.speed = 1;
         }
         if (is_large_zombean && !dead)
         {
@@ -141,7 +145,7 @@ public class Zombean_1 : MonoBehaviour
             else
             {
                 
-                nav.speed = 3.5f;
+                //nav.speed = 3.5f;
             }
         }
 
@@ -161,7 +165,7 @@ public class Zombean_1 : MonoBehaviour
             }
             else
             {
-                nav.speed = 3.5f;
+                nav.speed = nav.speed;
             }
             if (can_attack && dist < 13f)
             {
@@ -177,6 +181,12 @@ public class Zombean_1 : MonoBehaviour
                 }
                 
             }
+        }
+
+        if (dead)
+        {
+            zombean1.enabled = false;
+            zomb_nav.enabled = false;
         }
 
 
@@ -528,7 +538,8 @@ public class Zombean_1 : MonoBehaviour
 
     public void fire_damage(float damage)
     {
-        hitflash.flash();
+        nav.speed = 1;
+        //hitflash.flash();
         if (Current_Health > 0) 
         {
             Current_Health -= damage;
@@ -565,6 +576,7 @@ public class Zombean_1 : MonoBehaviour
 
         if (Current_Health <= 0 && dead == false)
         {
+            nav.speed = 0;
             if (spawn_System)
             {
                 spawn_System.TryGetComponent<Spawn_system>(out Spawn_system spss);

@@ -282,6 +282,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66fcbd1b23d5a374d941abf2d019911d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  zomb_nav: {fileID: 2426943017897588402}
+  zombean1: {fileID: 1310838240842863867}
   is_explosive: 0
   explosion_force: 0
   explosion_radius: 0
