@@ -49,7 +49,7 @@ public class Zombean_2 : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
        // UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
         B_collider = GetComponent<BoxCollider>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("BASE").transform;
         spawn_System = GameObject.FindGameObjectWithTag("Spawner");
 
     }
@@ -68,7 +68,7 @@ public class Zombean_2 : MonoBehaviour
         if (!dead) 
         {
             float dist = (Vector3.Distance(transform.position, player.transform.position));
-            if (dist < 2.5f)
+            if (dist < 13f)
             {
                 nav.speed = 0;
             }
@@ -76,7 +76,7 @@ public class Zombean_2 : MonoBehaviour
             {
                 nav.speed = 7f;
             }
-            if (can_attack && dist < 2f)
+            if (can_attack && dist < 13f)
             {
                 Vector3 directiontoplayer2 = player.transform.position - transform.position;
                 Vector3 oppositedirection2 = directiontoplayer2.normalized;

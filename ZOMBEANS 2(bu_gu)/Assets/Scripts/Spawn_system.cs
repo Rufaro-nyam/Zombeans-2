@@ -15,7 +15,7 @@ public class Spawn_system : MonoBehaviour
     private int zombean_range = 0;
 
     public int max_to_spawn;
-    public int time_between_spawns;
+    public float time_between_spawns;
 
 
     private bool added_zmb2 = false;

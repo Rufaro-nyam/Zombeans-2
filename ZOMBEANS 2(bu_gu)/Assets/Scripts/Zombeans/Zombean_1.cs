@@ -80,7 +80,7 @@ public class Zombean_1 : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
         //UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
         B_collider = GetComponent<BoxCollider>();
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("BASE").transform;
         if (charge_target)
         {
             charge_target.transform.position = player.transform.position;
@@ -155,7 +155,7 @@ public class Zombean_1 : MonoBehaviour
         if (!dead && !is_large_zombean && !is_spitter) 
         {
             float dist = (Vector3.Distance(transform.position, player.transform.position));
-            if (dist < 2f)
+            if (dist < 12f)
             {
                 nav.speed = 0;
             }
@@ -163,7 +163,7 @@ public class Zombean_1 : MonoBehaviour
             {
                 nav.speed = 3.5f;
             }
-            if (can_attack && dist < 2f)
+            if (can_attack && dist < 13f)
             {
                 Vector3 directiontoplayer2 = player.transform.position - transform.position;
                 Vector3 oppositedirection2 = directiontoplayer2.normalized;
@@ -194,7 +194,12 @@ public class Zombean_1 : MonoBehaviour
             print("stunned");
             StartCoroutine(stunned());
         }
-    
+        if (collision.transform.tag == "BASE")
+        {
+            nav.speed = 0;
+            print("BASE DETECTED");
+        }
+
 
     }
 

@@ -9,6 +9,7 @@ TagManager:
   - ZOMBEAN2
   - ZOMBEAN3
   - Spawner
+  - BASE
   layers:
   - Default
   - TransparentFX

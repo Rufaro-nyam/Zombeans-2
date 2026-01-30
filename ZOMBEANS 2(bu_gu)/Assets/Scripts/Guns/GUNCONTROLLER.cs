@@ -69,6 +69,7 @@ public class GUNCONTROLLER : MonoBehaviour
 
     //AUDIO
     private AudioSource shot;
+    public AudioSource whizz;
     // Start is called before the first frame update
     void Start()
     {
@@ -276,6 +277,12 @@ public class GUNCONTROLLER : MonoBehaviour
                         {
                             shot.pitch = UnityEngine.Random.Range(1f, 1.5f);
                             shot.Play();
+                            int num = Random.Range(0, 3);
+                            if(num == 2)
+                            {
+                                whizz.Play();
+                                whizz.pitch = UnityEngine.Random.Range(1f, 1.5f);
+                            }
 
                         }
                     }
