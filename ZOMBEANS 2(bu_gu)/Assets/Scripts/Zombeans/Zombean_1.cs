@@ -10,6 +10,7 @@ public class Zombean_1 : MonoBehaviour
 {
     public ZOMBEAN_NAVIGATION zomb_nav;
     public Zombean_1 zombean1;
+    private NavMeshAgent my_nav;
 
     public bool is_explosive;
     public float explosion_force, explosion_radius;
@@ -89,6 +90,7 @@ public class Zombean_1 : MonoBehaviour
             charge_target.transform.position = player.transform.position;
         }
         spawn_System = GameObject.FindGameObjectWithTag("Spawner");
+        my_nav = GetComponent<NavMeshAgent>();
 
 
 
@@ -187,6 +189,7 @@ public class Zombean_1 : MonoBehaviour
         {
             zombean1.enabled = false;
             zomb_nav.enabled = false;
+            my_nav.enabled = false;
         }
 
 

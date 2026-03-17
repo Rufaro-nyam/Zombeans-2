@@ -14,11 +14,7 @@ public class Hitflash : MonoBehaviour
         original_colour = rend[0].material.color;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     public IEnumerator DOflash()
     {

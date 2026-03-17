@@ -11,11 +11,7 @@ public class Flame_particles : MonoBehaviour
         collision_mod.sendCollisionMessages = true;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 
     private void OnParticleCollision(GameObject other)
     {
