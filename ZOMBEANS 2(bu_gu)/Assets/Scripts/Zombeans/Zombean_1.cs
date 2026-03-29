@@ -8,6 +8,10 @@ using UnityEngine.UIElements;
 
 public class Zombean_1 : MonoBehaviour
 {
+    public ZOMBEAN_NAVIGATION zomb_nav;
+    public Zombean_1 zombean1;
+    private NavMeshAgent my_nav;
+
     public bool is_explosive;
     public float explosion_force, explosion_radius;
     public GameObject explosion;
@@ -86,6 +90,7 @@ public class Zombean_1 : MonoBehaviour
             charge_target.transform.position = player.transform.position;
         }
         spawn_System = GameObject.FindGameObjectWithTag("Spawner");
+        my_nav = GetComponent<NavMeshAgent>();
 
 
 
@@ -152,7 +157,13 @@ public class Zombean_1 : MonoBehaviour
         {
             model_body.transform.position = new Vector3(transform.position.x, model_body.transform.position.y, transform.position.z);
         }
-        if (!dead && !is_large_zombean && !is_spitter) 
+        else
+        {
+            zombean1.enabled = false;
+            zomb_nav.enabled = false;
+            my_nav.enabled = false;
+        }
+        if (!dead && !is_large_zombean && !is_spitter)
         {
             float dist = (Vector3.Distance(transform.position, player.transform.position));
             if (dist < 2f)
@@ -175,7 +186,7 @@ public class Zombean_1 : MonoBehaviour
                 {
                     p.Damage(transform.position);
                 }
-                
+
             }
         }
 
