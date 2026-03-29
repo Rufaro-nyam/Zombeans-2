@@ -9,7 +9,7 @@ public class Spawn_system : MonoBehaviour
     public Transform player;
     public Transform test_pos;
     private int spawn_amount = 0;
-    private int target_spawn_amount = 1000;
+    private int target_spawn_amount = 10;
     private int killed_amount = 0;
     private int wave = 0;
     private int zombean_range = 0;
@@ -49,7 +49,7 @@ public class Spawn_system : MonoBehaviour
             int num = Random.Range(0, max_to_spawn);
             float dist = Vector3.Distance(spawn_positions[num].position, player.position);
             int random_bean = Random.Range(0, zombean_range);
-            if (dist > 3f )
+            if (dist > 20f )
             {
                 if( spawn_positions[num].gameObject.active == true)
                 {
@@ -87,7 +87,7 @@ public class Spawn_system : MonoBehaviour
     void wipeout()
     {
 
-            Collider[] colliders = Physics.OverlapSphere(transform.position, 1000);
+           /* Collider[] colliders = Physics.OverlapSphere(transform.position, 1000);
             foreach (Collider nearby in colliders)
             {
                 if (nearby.tag == "ZOMBEAN")
@@ -107,7 +107,7 @@ public class Spawn_system : MonoBehaviour
                     Destroy(nearby.gameObject);
                 }
         }
-            corpse_wipeout = false;
+            corpse_wipeout = false;*/
         
     }
 

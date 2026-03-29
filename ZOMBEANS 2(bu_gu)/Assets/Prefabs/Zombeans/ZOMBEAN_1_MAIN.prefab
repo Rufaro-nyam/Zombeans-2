@@ -284,6 +284,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   zomb_nav: {fileID: 2426943017897588402}
   zombean1: {fileID: 1310838240842863867}
+  nav_to_disable: {fileID: 5757090108330700167}
   is_explosive: 0
   explosion_force: 0
   explosion_radius: 0

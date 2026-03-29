@@ -11,6 +11,7 @@ public class Zombean_1 : MonoBehaviour
     public ZOMBEAN_NAVIGATION zomb_nav;
     public Zombean_1 zombean1;
     private NavMeshAgent my_nav;
+    public NavMeshAgent nav_to_disable;
 
     public bool is_explosive;
     public float explosion_force, explosion_radius;
@@ -84,7 +85,7 @@ public class Zombean_1 : MonoBehaviour
         nav = GetComponent<NavMeshAgent>();
         //UnityEditor.EditorWindow.focusedWindow.maximized = !UnityEditor.EditorWindow.focusedWindow.maximized;
         B_collider = GetComponent<BoxCollider>();
-        player = GameObject.FindGameObjectWithTag("BASE").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         if (charge_target)
         {
             charge_target.transform.position = player.transform.position;
@@ -161,15 +162,15 @@ public class Zombean_1 : MonoBehaviour
         if (!dead && !is_large_zombean && !is_spitter) 
         {
             float dist = (Vector3.Distance(transform.position, player.transform.position));
-            if (dist < 12f)
+            if (dist < 2f)
             {
                 nav.speed = 0;
             }
             else
             {
-                nav.speed = nav.speed;
+                nav.speed = 3.5f;
             }
-            if (can_attack && dist < 13f)
+            if (can_attack && dist < 2f)
             {
                 Vector3 directiontoplayer2 = player.transform.position - transform.position;
                 Vector3 oppositedirection2 = directiontoplayer2.normalized;
@@ -190,6 +191,7 @@ public class Zombean_1 : MonoBehaviour
             zombean1.enabled = false;
             zomb_nav.enabled = false;
             my_nav.enabled = false;
+            nav_to_disable.enabled = false;
         }
 
 
@@ -580,6 +582,7 @@ public class Zombean_1 : MonoBehaviour
         if (Current_Health <= 0 && dead == false)
         {
             nav.speed = 0;
+            dead = true;
             if (spawn_System)
             {
                 spawn_System.TryGetComponent<Spawn_system>(out Spawn_system spss);
